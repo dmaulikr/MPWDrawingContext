@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IconView</key>
+	<dict>
+		<key>drawMPWRect:r onContext:aContext</key>
+		<string>
+self drawRect1: r onContext: aContext . 
+
+
+nativeSize := self nativeRect mpwSize.
+boundsSize := self bounds mpwSize.
+
+nativeAspect := nativeSize x / nativeSize x.
+boundsAspect := boundsSize x / boundsSize y.
+nativeAspect &gt; boundsAspect ifTrue: [  scale := boundsSize x / nativeSize x. ].
+
+nativeAspect &gt; boundsAspect  ifFalse: [  scale := boundsSize y / nativeSize y. ]. 
+
+MPWByteStream Stdout println: scale.
+
+aContext gsave .
+
+xt :=  0.5 * (boundsSize x - ( scale * nativeSize x ))  .
+yt := 0.5 * ( boundsSize y - ( scale  * nativeSize y )) .
+(aContext translate: xt :yt )  scale: scale : scale .
+
+ellipseRect := 32 @ 38 extent: 448 @ 448 .
+NSShadow setShadowWithOffset: (0 @ (-8 * scale)) blurRadius: (12*scale) color:(NSColor colorWithCalibratedWhite:0 alpha: 0.75).
+aContext setFillColorGray: 0.9 alpha: 1.0 .
+
+(aContext ellipseInRect: ellipseRect) fill .
+NSShadow clearShadow.
+
+
+aContext grestore . 
+
+
+
+</string>
+	</dict>
+</dict>
+</plist>

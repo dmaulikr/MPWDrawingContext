@@ -1,0 +1,226 @@
+// !$*UTF8*$!
+{
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {765, 848}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 45}";
+			sepNavWindowFrame = "{{15, 73}, {812, 955}}";
+		};
+	};
+	256AC3D80F4B6AC300CF3369 /* IconAppAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {765, 825}}";
+			sepNavSelRange = "{1179, 16}";
+			sepNavVisRange = "{0, 1205}";
+			sepNavWindowFrame = "{{944, 103}, {812, 955}}";
+		};
+	};
+	256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {765, 825}}";
+			sepNavSelRange = "{1468, 0}";
+			sepNavVisRange = "{0, 1496}";
+			sepNavWindowFrame = "{{15, 73}, {812, 955}}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = C94D4C451073435F005C45AA /* IconApp */;
+		activeTarget = 8D1107260486CEB800E47090 /* IconApp */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* IconApp */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = C94D4C5010734369005C45AA /* Code sense */;
+		executables = (
+			C94D4C451073435F005C45AA /* IconApp */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					783,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 321150594;
+			PBXWorkspaceStateSaveDate = 321150594;
+		};
+		perUserProjectItems = {
+			C92303A5107348CE002014CF = C92303A5107348CE002014CF /* PBXTextBookmark */;
+			C99563DA13245EA2008BDBF5 /* PBXTextBookmark */ = C99563DA13245EA2008BDBF5 /* PBXTextBookmark */;
+			C99563DB13245EA2008BDBF5 /* PBXTextBookmark */ = C99563DB13245EA2008BDBF5 /* PBXTextBookmark */;
+			C99563DF13245EC6008BDBF5 /* PBXTextBookmark */ = C99563DF13245EC6008BDBF5 /* PBXTextBookmark */;
+			C99563E113245ECA008BDBF5 /* PBXTextBookmark */ = C99563E113245ECA008BDBF5 /* PBXTextBookmark */;
+		};
+		sourceControlManager = C94D4C4F10734369005C45AA /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8D1107260486CEB800E47090 /* IconApp */ = {
+		activeExec = 0;
+		executables = (
+			C94D4C451073435F005C45AA /* IconApp */,
+		);
+	};
+	8D1107310486CEB800E47090 /* IconApp-Info.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{361, 73}, {812, 955}}";
+		};
+	};
+	C90F241412F6A6D000F8EA1E /* Icon.icns */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 396}, {729, 662}}";
+		};
+	};
+	C92303A5107348CE002014CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* IconAppAppDelegate.h */;
+		name = "IconAppAppDelegate.h: 11";
+		rLen = 0;
+		rLoc = 276;
+		rType = 0;
+		vrLen = 539;
+		vrLoc = 0;
+	};
+	C94D4C451073435F005C45AA /* IconApp */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = YES;
+				name = NSZombieEnabled;
+				value = YES;
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = IconApp;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	C94D4C4F10734369005C45AA /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	C94D4C5010734369005C45AA /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	C94D4CB3107347C9005C45AA /* IconAppWindowController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {676, 878}}";
+			sepNavSelRange = "{323, 0}";
+			sepNavVisRange = "{0, 1242}";
+			sepNavWindowFrame = "{{1173, 73}, {723, 985}}";
+		};
+	};
+	C94D4CB4107347C9005C45AA /* IconAppWindowController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {676, 1302}}";
+			sepNavSelRange = "{1155, 0}";
+			sepNavVisRange = "{1153, 1421}";
+			sepNavWindowFrame = "{{82, 73}, {723, 985}}";
+		};
+	};
+	C99563DA13245EA2008BDBF5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */;
+		name = "IconAppAppDelegate.m: 29";
+		rLen = 0;
+		rLoc = 1129;
+		rType = 0;
+		vrLen = 1392;
+		vrLoc = 0;
+	};
+	C99563DB13245EA2008BDBF5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */;
+		name = "IconAppAppDelegate.m: 29";
+		rLen = 0;
+		rLoc = 1129;
+		rType = 0;
+		vrLen = 1392;
+		vrLoc = 0;
+	};
+	C99563DF13245EC6008BDBF5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */;
+		name = "IconAppAppDelegate.m: 42";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1496;
+		vrLoc = 0;
+	};
+	C99563E113245ECA008BDBF5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */;
+		name = "IconAppAppDelegate.m: 42";
+		rLen = 0;
+		rLoc = 1468;
+		rType = 0;
+		vrLen = 1496;
+		vrLoc = 0;
+	};
+	C9C81A1812F2AAB600AFE7BF /* IconView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1224, 857}}";
+			sepNavSelRange = "{219, 0}";
+			sepNavVisRange = "{0, 1103}";
+			sepNavWindowFrame = "{{15, 89}, {1271, 964}}";
+		};
+	};
+	C9C81A1912F2AAB600AFE7BF /* IconView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1096, 2590}}";
+			sepNavSelRange = "{6184, 17}";
+			sepNavVisRange = "{4594, 2386}";
+			sepNavWindowFrame = "{{292, 68}, {1143, 990}}";
+		};
+	};
+}

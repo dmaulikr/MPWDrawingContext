@@ -89,7 +89,7 @@
 
 	[NSShadow clearShadow];
 
-	NSBezierPath *ellipse = [NSBezierPath bezierPathWithOvalInRect:ellipseRect];
+//	NSBezierPath *ellipse = [NSBezierPath bezierPathWithOvalInRect:ellipseRect];
 
     [[context ellipseInRect:ellipseRect] clip];
 	NSPoint endPoint = NSMakePoint(ellipseRect.origin.x, ellipseRect.origin.y + ellipseRect.size.height);

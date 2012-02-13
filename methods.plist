@@ -18,7 +18,6 @@ nativeAspect &gt; boundsAspect ifTrue: [  scale := boundsSize x / nativeSize x. 
 
 nativeAspect &gt; boundsAspect  ifFalse: [  scale := boundsSize y / nativeSize y. ]. 
 
-MPWByteStream Stdout println: scale.
 
 aContext gsave .
 
@@ -32,6 +31,16 @@ aContext setFillColorGray: 0.9 alpha: 1.0 .
 
 (aContext ellipseInRect: ellipseRect) fill .
 NSShadow clearShadow.
+
+(aContext ellipseInRect: ellipseRect) clip .
+
+endPoint :=   ellipseRect origin x @ (ellipseRect origin y  + ellipseRect mpwSize y ).
+colors := NSMutableArray array.
+colors addObject: ( aContext colorGray:1.0 alpha: 1.0 ).
+colors addObject: ( aContext colorGray:0.82 alpha: 1.0).
+
+
+aContext drawLinearGradientFrom: ellipseRect origin  to: endPoint colors: colors offsets: #( 1.0 0.0 ) .
 
 
 aContext grestore . 

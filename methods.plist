@@ -42,6 +42,29 @@ colors addObject: ( aContext colorGray:0.82 alpha: 1.0).
 
 aContext drawLinearGradientFrom: ellipseRect origin  to: endPoint colors: colors offsets: #( 1.0 0.0 ) .
 
+borderGradient := (NSGradient alloc initWithStartingColor:(NSColor colorWithCalibratedWhite:1.0 alpha:1.0) endingColor: (NSColor colorWithCalibratedWhite:0.82 alpha:1.0) ) autorelease.
+
+
+ellipseCenterRect := (ellipseRect origin x + 16 ) @ (ellipseRect origin y + 16 ) extent: ( ellipseRect mpwSize x - 32 ) @ ( ellipseRect mpwSize y - 32 ) .
+
+aContext setFillColorGray:0.0 alpha:1.0.
+(aContext ellipseInRect:ellipseCenterRect) fill .
+(aContext ellipseInRect:ellipseCenterRect) clip .
+
+centerPoint := (( ellipseCenterRect origin x + ellipseCenterRect mpwSize x ) / 2 ) @ ( (( ellipseCenterRect origin x + ellipseCenterRect mpwSize x ) / 2 )  - (0.1 *  ellipseCenterRect mpwSize y )).
+
+colors := NSMutableArray array.
+colors addObject: ( aContext colorRed:0 green:0.94 blue:0.82 alpha:1.0 ).
+colors addObject: ( aContext colorRed:0 green:0.62 blue:0.56  alpha:1.0 ).
+colors addObject: ( aContext colorRed:0 green:0.05 blue:0.35  alpha:1.0 ).
+colors addObject: ( aContext colorRed:0 green:0.0 blue:0.0 alpha:1.0 ).
+radius := 0.8 * ellipseCenterRect mpwSize y .
+
+aContext drawRadialGradientFrom: centerPoint radius:0.0
+                                 to:centerPoint radius: radius
+                             colors:colors
+                            offsets: #( 0.0 0.35 0.6 0.7).
+
 
 aContext grestore . 
 

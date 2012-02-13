@@ -65,6 +65,18 @@ aContext drawRadialGradientFrom: centerPoint radius:0.0
                              colors:colors
                             offsets: #( 0.0 0.35 0.6 0.7).
 
+centerPoint :=  (( ellipseCenterRect origin x + ellipseCenterRect mpwSize x ) / 2 ) @ ( (( ellipseCenterRect origin x + ellipseCenterRect mpwSize x ) / 2 )  - (0.4 *  ellipseCenterRect mpwSize y )).
+
+colors := NSMutableArray array.
+colors addObject: ( aContext colorRed:0 green:0.68 blue:1.0 alpha:0.75 ).
+colors addObject: ( aContext colorRed:0 green:0.45 blue:0.62 alpha:0.55 ).
+colors addObject: ( aContext colorRed:0 green:0.45 blue:0.62 alpha:0.0 ).
+
+aContext drawRadialGradientFrom: centerPoint radius:0.0
+                                 to:centerPoint radius: radius
+                             colors:colors
+                            offsets: #( 0.0 0.25 0.4 ).
+
 
 aContext grestore . 
 

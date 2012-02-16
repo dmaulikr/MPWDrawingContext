@@ -45,16 +45,12 @@ borderGradient := (NSGradient alloc initWithStartingColor:(NSColor colorWithCali
 
 
 ellipseCenterRect :=  ellipseRect inset: 16.
-stdout println: ellipseRect .
-stdout println: ellipseCenterRect .
 
 aContext setFillColorGray:0.0 alpha:1.0.
 (aContext ellipseInRect:ellipseCenterRect) fill .
 (aContext ellipseInRect:ellipseCenterRect) clip .
 
 centerPoint := ellipseCenterRect center   - (0 @ (0.2 *  ellipseCenterRect height )).
-stdout print: 'ellipseCenterRect center: '. stdout println: ellipseCenterRect center.
-stdout print: 'centerPoint: '. stdout println: centerPoint .
 
 colors := NSMutableArray array.
 colors addObject: ( aContext colorRed:0 green:0.94 blue:0.82 alpha:1.0 ).
@@ -95,22 +91,34 @@ aContext drawRadialGradientFrom: centerPoint radius:0.0
                              colors:colors
                             offsets: #( 0.0 0.85 ).
 
+shadowOffset := 0@0.
+shadowColor :=  (NSColor colorWithCalibratedWhite:0 alpha:1.0).
+shadowRadius:= 12 * scale .
+
+NSShadow setShadowWithOffset: shadowOffset blurRadius: shadowRadius color: shadowColor.
+(NSColor colorWithCalibratedWhite:0.9 alpha:1.0) set.
+
+
+
+font := NSFont fontWithName:'Arial Unicode MS' size:345.
+attrDict := NSMutableDictionary dictionary.
+attrDict setObject:(NSColor colorWithCalibratedWhite:0.9 alpha:1.0) forKey:'NSColor'.
+attrDict setObject: font forKey:'NSFont'.
+
+floralHeart := NSString stringWithCharacter:10086.
+floralHeart drawAtPoint: (120 @ 30 ) withAttributes: attrDict.
+
+NSShadow clearShadow.
+
 
 glossInset := 8.
 glossRadius := ellipseCenterRect width * 0.5 - glossInset .
 center := ellipseRect center.
-stdout print: ' center:   '  .  stdout println: center.
-stdout print: ' from rect:   '  .  stdout println: ellipseRect.
 
 arcFraction := 0.02 * 180.
 
 arcStartPoint :=  center + ((arcFraction cos  negated ) @ ( arcFraction sin ) * glossRadius).
 arcEndPoint :=  center + ((arcFraction cos  ) @ ( arcFraction sin ) * glossRadius).
-
-stdout print: ' arcStartPoint:   '  .  stdout println: arcStartPoint.
-stdout print: ' arcEndPoint:   '  .  stdout println: arcEndPoint.
-stdout print: ' arcFraction cos:   '  .  stdout println: arcFraction cos.
-stdout print: ' arcFraction sin:   '  .  stdout println: arcFraction sin.
 
 
 glossPath := NSBezierPath alloc init autorelease.
@@ -142,8 +150,7 @@ glossGradient drawInBezierPath:glossPath angle:-90.
 
 aContext grestore . 
 
-1 ifTrue: [ self drawRect1: r onContext: aContext ].
-</string>
+1 ifTrue: [ self drawRect1: r onContext: aContext ].</string>
 	</dict>
 </dict>
 </plist>

@@ -45,6 +45,17 @@
 
 @end
 
+@implementation NSString(stringWithCharacter)
+
+
++(id)stringWithCharacter:(const unichar )character
+{
+    return [self stringWithCharacters:&character length:1];
+}
+
+@end
+
+
 
 @implementation NSShadow (SingleLineShadows)
 
@@ -181,7 +192,10 @@
 			weight:5
 			size:345];
 
-	// Getting the glyph using AppKit's NSLayoutManager
+	NSLog(@"NSFontAttributeName: '%@'",NSFontAttributeName);
+	NSLog(@"NSForegroundColorAttributeName: '%@'",NSForegroundColorAttributeName);
+    
+    // Getting the glyph using AppKit's NSLayoutManager
 	NSString *floralHeart = @"\u2766";
 	NSRange stringRange = NSMakeRange(0, [floralHeart length]);
 	NSLayoutManager *layoutManager = [[[NSLayoutManager alloc] init] autorelease];

@@ -76,9 +76,6 @@ aContext drawRadialGradientFrom: centerPoint radius:0.0
 
 centerPoint :=  ellipseCenterRect center .
 
-stdout print: ' ellipseCenterRect:   '  .  stdout println: ellipseCenterRect.
-stdout print: ' centerPoint:   '  .  stdout println: centerPoint.
-
 
 colors := NSMutableArray array.
 colors addObject: ( aContext colorRed:0 green:0.9 blue:0.9 alpha:0.9 ).
@@ -89,20 +86,18 @@ aContext drawRadialGradientFrom: centerPoint radius:0.0
                              colors:colors
                             offsets: #( 0.0 0.85 ).
 
-shadowOffset := 0@0.
-shadowColor :=  (NSColor colorWithCalibratedWhite:0 alpha:1.0).
-shadowRadius:= 12 * scale .
-
-aContext setShadowOffset: shadowOffset blur: shadowRadius color: (aContext colorGray:0.0 alpha:1.0).
+aContext setShadowOffset: (0@0)  blur: (scale*12) color: (aContext colorGray:0.0 alpha:1.0).
 
 
-font := NSFont fontWithName:'Arial Unicode MS' size:345.
 attrDict := NSMutableDictionary dictionary.
-attrDict setObject:(NSColor colorWithCalibratedWhite:0.9 alpha:1.0) forKey:'NSColor'.
-attrDict setObject: font forKey:'NSFont'.
+attrDict setObject:(aContext colorGray:0.9 alpha:1.0) forKey:'NSColor'.
+attrDict setObject: (aContext fontWithName:'Arial Unicode MS' size:345) forKey:'NSFont'.
 
 floralHeart := NSString stringWithCharacter:10086.
-floralHeart drawAtPoint: (130 @ 45 ) withAttributes: attrDict.
+floralHeart := NSAttributedString alloc initWithString: floralHeart attributes: attrDict.
+aContext setTextPosition: (130@140).
+aContext show:floralHeart.
+
 
 aContext clearShadow.
 
@@ -141,7 +136,8 @@ glossGradient drawInBezierPath:glossPath angle:-90.
 
 aContext grestore . 
 
-0 ifTrue: [ self drawRect1: r onContext: aContext ].</string>
+0 ifTrue: [ self drawRect1: r onContext: aContext ].
+</string>
 	</dict>
 </dict>
 </plist>

@@ -127,7 +127,7 @@
 //	[borderGradient drawInBezierPath:ellipse angle:-90];
 
 	NSRect ellipseCenterRect = NSInsetRect(ellipseRect, 16, 16);
-
+    NSLog(@"ellipseCenterRect: %@",NSStringFromRect(ellipseCenterRect));
 	
 	[[[context setFillColorGray:0.0 alpha:1.0] ellipseInRect:ellipseCenterRect] fill];
 
@@ -135,6 +135,7 @@
 
     NSPoint centerPoint = NSMakePoint( NSMidX( ellipseCenterRect ), NSMidY(ellipseCenterRect) - 0.1 * ellipseCenterRect.size.height);
 
+    NSLog(@"first glow centerPoint: %@",NSStringFromPoint(centerPoint));
     // bottom glow gradient 
     [context drawRadialGradientFrom:centerPoint radius:0.0
                                  to:centerPoint radius:0.8 * ellipseCenterRect.size.height 
@@ -148,6 +149,7 @@
                             offsets: [MPWRealArray arrayWithReals:(float[]){0.0,0.35,0.6,0.7} count:4]];
 
     centerPoint = NSMakePoint( NSMidX( ellipseCenterRect ), NSMidY(ellipseCenterRect) + 0.4 * ellipseCenterRect.size.height);
+    NSLog(@"second glow centerPoint: %@",NSStringFromPoint(centerPoint));
     [context drawRadialGradientFrom:centerPoint radius:0.0
                                  to:centerPoint radius:0.8 * ellipseCenterRect.size.height 
                              colors:[NSArray arrayWithObjects:
@@ -160,6 +162,7 @@
  
  
     centerPoint = NSMakePoint( NSMidX( ellipseCenterRect ), NSMidY(ellipseCenterRect) );
+    NSLog(@"third glow centerPoint: %@",NSStringFromPoint(centerPoint));
     [context drawRadialGradientFrom:centerPoint radius:0.0
                                  to:centerPoint radius:0.8 * ellipseCenterRect.size.height 
                              colors:[NSArray arrayWithObjects:
@@ -224,6 +227,7 @@
 	const CGFloat glossInset = 8;
 	CGFloat glossRadius = (ellipseCenterRect.size.width * 0.5) - glossInset;
 	NSPoint center = NSMakePoint(NSMidX(ellipseRect), NSMidY(ellipseRect));
+    NSLog(@"arc center: %@ from rect: %@",NSStringFromPoint(center),NSStringFromRect(ellipseRect));
 
 	double arcFraction = 0.02;
 	NSPoint arcStartPoint = NSMakePoint(

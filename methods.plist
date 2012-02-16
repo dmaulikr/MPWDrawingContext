@@ -82,6 +82,10 @@ aContext drawRadialGradientFrom: centerPoint radius:0.0
 
 centerPoint :=  ellipseCenterRect center .
 
+stdout print: ' ellipseCenterRect:   '  .  stdout println: ellipseCenterRect.
+stdout print: ' centerPoint:   '  .  stdout println: centerPoint.
+
+
 colors := NSMutableArray array.
 colors addObject: ( aContext colorRed:0 green:0.9 blue:0.9 alpha:0.9 ).
 colors addObject: ( aContext colorRed:0 green:0.49 blue:1.0 alpha:0.0 ).
@@ -95,6 +99,8 @@ aContext drawRadialGradientFrom: centerPoint radius:0.0
 glossInset := 8.
 glossRadius := ellipseCenterRect width * 0.5 - glossInset .
 center := ellipseRect center.
+stdout print: ' center:   '  .  stdout println: center.
+stdout print: ' from rect:   '  .  stdout println: ellipseRect.
 
 arcFraction := 0.02 * 180.
 
@@ -136,10 +142,7 @@ glossGradient drawInBezierPath:glossPath angle:-90.
 
 aContext grestore . 
 
-0 ifTrue: [ self drawRect1: r onContext: aContext ].
-
-
-
+1 ifTrue: [ self drawRect1: r onContext: aContext ].
 </string>
 	</dict>
 </dict>

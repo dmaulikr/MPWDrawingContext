@@ -31,6 +31,21 @@
 
 @end
 
+@implementation NSGradient(arrayArgs)
+
+- (id)initWithColors:(NSArray *)colorArray atLocationsArray:(NSArray*)locations colorSpace:(NSColorSpace *)colorSpace
+{
+    CGFloat locs[ [locations count] ];
+    for (int i=0;i<[locations count]; i++) {
+        locs[i]=[[locations objectAtIndex:i] doubleValue];
+    }
+    return [self initWithColors:colorArray atLocations:locs colorSpace:colorSpace];
+}
+
+
+@end
+
+
 @implementation NSShadow (SingleLineShadows)
 
 + (void)setShadowWithOffset:(NSSize)offset blurRadius:(CGFloat)radius color:(NSColor *)shadowColor
@@ -218,6 +233,10 @@
 		center.x + glossRadius * cos(arcFraction * M_PI),
 		center.y + glossRadius * sin(arcFraction * M_PI));
 
+    NSLog(@"arcStartPoint: %@",NSStringFromPoint(arcStartPoint));
+    NSLog(@"arcEndPoint: %@",NSStringFromPoint(arcEndPoint));
+    NSLog(@"arcFraction (%g) cos:%g sin:%g",arcFraction,cos(arcFraction * M_PI),sin(arcFraction * M_PI));
+    
 	NSBezierPath *glossPath = [[[NSBezierPath alloc] init] autorelease];
 	[glossPath moveToPoint:arcStartPoint];
 	[glossPath

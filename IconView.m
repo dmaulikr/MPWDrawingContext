@@ -24,37 +24,13 @@
 #import "IconView.h"
 #import <MPWFoundation/MPWFoundation.h>
 
+#if !TARGET_OS_IPHONE
 @interface NSShadow (SingleLineShadows)
 
 + (void)setShadowWithOffset:(NSSize)offset blurRadius:(CGFloat)radius color:(NSColor *)shadowColor;
 + (void)clearShadow;
 
 @end
-
-@implementation NSGradient(arrayArgs)
-
-- (id)initWithColors:(NSArray *)colorArray atLocationsArray:(NSArray*)locations colorSpace:(NSColorSpace *)colorSpace
-{
-    CGFloat locs[ [locations count] ];
-    for (int i=0;i<[locations count]; i++) {
-        locs[i]=[[locations objectAtIndex:i] doubleValue];
-    }
-    return [self initWithColors:colorArray atLocations:locs colorSpace:colorSpace];
-}
-
-
-@end
-
-@implementation NSString(stringWithCharacter)
-
-
-+(id)stringWithCharacter:(const unichar )character
-{
-    return [self stringWithCharacters:&character length:1];
-}
-
-@end
-
 
 
 @implementation NSShadow (SingleLineShadows)
@@ -76,6 +52,21 @@
 
 @end
 
+#endif
+
+
+@implementation NSString(stringWithCharacter)
+
+
++(id)stringWithCharacter:(const unichar )character
+{
+    return [self stringWithCharacters:&character length:1];
+}
+
+@end
+
+
+
 @implementation IconView
 
 - (NSRect)nativeRect
@@ -86,10 +77,14 @@
 
 -(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context
 {
+    NSLog(@"drawRect:onContext:");
     [self drawMPWRect:[MPWRect rectWithNSRect:rect] onContext:context];
 }
 
--(void)drawRect1:(NSRect)rect onContext:(id <MPWDrawingContext>)context
+
+#if !TARGET_OS_IPHONE
+
+-(void)drawRect_Cocoa:(NSRect)rect onContext:(id <MPWDrawingContext>)context
 {
 	NSSize nativeSize = [self nativeRect].size;
 	NSSize boundsSize = [[NSGraphicsContext currentContext] isDrawingToScreen] ? self.bounds.size : [self nativeRect].size;
@@ -235,6 +230,125 @@
 	[glossGradient drawInBezierPath:glossPath angle:-90];
     
 	[[NSGraphicsContext currentContext] restoreGraphicsState];
+}
+
+#endif
+
+-(void)drawRectObjc:(NSRect)rect onContext:(id <MPWDrawingContext>)context
+{
+    NSLog(@"drawRectObjc");
+	NSSize nativeSize = [self nativeRect].size;
+	NSSize boundsSize = [[NSGraphicsContext currentContext] isDrawingToScreen] ? self.bounds.size : [self nativeRect].size;
+	CGFloat nativeAspect = nativeSize.width / nativeSize.height;
+	CGFloat boundsAspect = boundsSize.width / boundsSize.height;
+	CGFloat scale = nativeAspect > boundsAspect ?
+    boundsSize.width / nativeSize.width :
+    boundsSize.height / nativeSize.height;
+	
+    [context gsave];
+    
+    [context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)];
+    [context scale:scale :scale];
+    
+
+	NSRect ellipseRect = NSMakeRect(32, 38, 448, 448);
+	
+    [context setShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75]];
+    
+    [context setFillColorGray:0.9 alpha:1.0];
+    [[context ellipseInRect:ellipseRect] fill];
+    [context clearShadow];
+    
+    [[context ellipseInRect:ellipseRect] clip];
+    
+    [context drawLinearGradientFrom:ellipseRect.origin
+                                 to:NSMakePoint(ellipseRect.origin.x, ellipseRect.origin.y+ellipseRect.size.height)
+                             colors:[context colorsGray:@[ @1 , @0.85 ] alpha:@1.0 ]
+                            offsets:@[ @1.0, @0.0 ]  ];
+    
+    
+	NSRect ellipseCenterRect = NSInsetRect(ellipseRect, 16, 16);
+    
+    [context setFillColorGray:0.0 alpha:1.0];
+    [[context ellipseInRect:ellipseCenterRect] fill];
+    [[context ellipseInRect:ellipseCenterRect] clip];
+    
+    
+    NSPoint centerPoint = NSMakePoint( NSMidX(ellipseCenterRect), NSMidY(ellipseCenterRect) - ellipseCenterRect.size.height*0.2);
+    float radius=0.8 * ellipseCenterRect.size.height;
+    
+    NSArray *colors = [context colorsRed:@0 green:@[ @0.94, @0.62, @0.05, @0.0 ] blue:@[ @0.82, @0.56, @0.35, @0.0] alpha:@1.0];
+    
+	[context drawRadialGradientFrom:centerPoint
+                             radius:0.0
+                                 to:centerPoint
+                             radius:radius
+                             colors:colors
+                            offsets:@[ @0.0, @0.35, @0.6, @0.7 ]];
+
+    centerPoint = NSMakePoint( NSMidX(ellipseCenterRect), NSMidY(ellipseCenterRect) + ellipseCenterRect.size.height*0.4);
+
+    
+    colors = [context colorsRed:@0 green:@[ @0.68, @0.45 ] blue:@[ @1.0, @0.62] alpha:@[ @0.75, @0.55, @0.0] ];
+	[context drawRadialGradientFrom:centerPoint
+                             radius:0.0
+                                 to:centerPoint
+                             radius:radius
+                             colors:colors
+                            offsets:@[ @0.0, @0.25, @0.4 ]];
+ 
+    
+    centerPoint = NSMakePoint( NSMidX(ellipseCenterRect), NSMidY(ellipseCenterRect));
+    colors = [context colorsRed:@0 green:@[ @0.9, @0.49 ] blue:@[ @0.9, @1.0] alpha:@[ @0.9, @0.0] ];
+
+    [context drawRadialGradientFrom:centerPoint
+                             radius:0.0
+                                 to:centerPoint
+                             radius:radius
+                             colors:colors
+                            offsets:@[ @0.0, @0.85 ]];
+
+    [context setShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0]];
+    [context gsave];
+    [context translate:130  :140];
+    [context setFont:[context fontWithName:@"ArialMT" size:345]];
+    [context setFillColorGray:0.9 alpha:1.0];
+    [context setTextPosition:NSMakePoint(0, 0)];
+    [context show:@"\u2766"];
+    [context grestore];
+    [context clearShadow];
+
+    
+    
+	const CGFloat glossInset = 8;
+	CGFloat glossRadius = (ellipseCenterRect.size.width * 0.5) - glossInset;
+	NSPoint center = NSMakePoint(NSMidX(ellipseRect), NSMidY(ellipseRect));
+    double bottomArcRadius = 2.6;
+    double bottomRadius = glossRadius * bottomArcRadius;
+	double arcFraction = 0.02 ;
+    NSPoint arcStart = center;
+    arcStart.y -= 70;
+	NSPoint arcStartPoint = NSMakePoint(
+                                        center.x - glossRadius * cos(arcFraction * M_PI),
+                                        center.y + glossRadius * sin(arcFraction * M_PI));
+	NSPoint arcEndPoint = NSMakePoint(
+                                      center.x + glossRadius * cos(arcFraction * M_PI),
+                                      center.y + glossRadius * sin(arcFraction * M_PI));
+    float startAngle=arcFraction * 180;
+    float endAngle=180-startAngle;
+    
+    [context moveto:arcStartPoint.x :arcStartPoint.y];
+
+    [context arcWithCenter:center radius:glossRadius startDegrees:startAngle endDegrees:endAngle clockwise:NO];
+    [context moveto:arcEndPoint.x :arcEndPoint.y];
+    [context arcFromPoint:arcStart toPoint:arcStartPoint radius:bottomRadius];
+    [context lineto:arcStartPoint.x :arcStartPoint.y];
+    [context clip];
+    colors = [context colorsGray:@1 alpha:@[ @0.55, @0.25, @0.05 ]];
+    NSPoint gradientStart = NSMakePoint(center.x, center.y - glossRadius);
+    NSPoint endPoint = NSMakePoint(center.x, center.y + glossRadius);
+    [context drawLinearGradientFrom:gradientStart to:endPoint colors:colors offsets:@[ @0, @0.5, @1.0]];
+    [context grestore];
 }
 
 @end

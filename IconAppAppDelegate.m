@@ -32,7 +32,7 @@ objectAccessor(MethodServer, methodServer, setMethodServer)
 
 -(void)createMethodServer
 {
-    [self setMethodServer:[[[MethodServer alloc] init] autorelease]]; 
+    [self setMethodServer:[[[MethodServer alloc] initWithMethodDictName:@"iconapp"] autorelease]]; 
     [[self methodServer] setup];
 }
 

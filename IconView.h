@@ -20,8 +20,10 @@
 //  3. This notice may not be removed or altered from any source
 //     distribution.
 //
+//  Modifed by Marcel Weiher to use MPWDrawingContext and MPWView
+//
 
-//#import <Cocoa/Cocoa.h>
+
 #import <EGOS_Cocoa/MPWView.h>
 
 

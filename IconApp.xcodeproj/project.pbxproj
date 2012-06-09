@@ -8,11 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		1F201B7014E7FF5E007BEFDA /* methods.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F201B6F14E7FF5E007BEFDA /* methods.plist */; };
+		1F201B7014E7FF5E007BEFDA /* iconapp.classdict in Resources */ = {isa = PBXBuildFile; fileRef = 1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */; };
 		1F201B7714E80084007BEFDA /* MethodServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F201B7614E80084007BEFDA /* MethodServer.framework */; };
 		1F5D63CF14BDE30E00C939EA /* EGOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5D63CD14BDE30D00C939EA /* EGOS.framework */; };
 		1F5D63D014BDE30E00C939EA /* EGOS_Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5D63CE14BDE30E00C939EA /* EGOS_Cocoa.framework */; };
 		1FD157A814CE9F1B002DF2D5 /* MPWFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD157A714CE9F1B002DF2D5 /* MPWFoundation.framework */; };
+		1FD8D67D14EE31EF00FEABF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D67C14EE31EF00FEABF3 /* UIKit.framework */; };
+		1FD8D67F14EE31EF00FEABF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D67E14EE31EF00FEABF3 /* Foundation.framework */; };
+		1FD8D68114EE31EF00FEABF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D68014EE31EF00FEABF3 /* CoreGraphics.framework */; };
+		1FD8D68714EE31EF00FEABF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8D68514EE31EF00FEABF3 /* InfoPlist.strings */; };
+		1FD8D68914EE31EF00FEABF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8D68814EE31EF00FEABF3 /* main.m */; };
+		1FD8D68D14EE31EF00FEABF3 /* MPWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8D68C14EE31EF00FEABF3 /* MPWAppDelegate.m */; };
+		1FD8D69014EE31EF00FEABF3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8D68E14EE31EF00FEABF3 /* MainStoryboard_iPhone.storyboard */; };
+		1FD8D69314EE31EF00FEABF3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8D69114EE31EF00FEABF3 /* MainStoryboard_iPad.storyboard */; };
+		1FD8D69614EE31EF00FEABF3 /* MPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8D69514EE31EF00FEABF3 /* MPWViewController.m */; };
+		1FD8D69C14EE323D00FEABF3 /* iconapp.classdict in Resources */ = {isa = PBXBuildFile; fileRef = 1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */; };
+		1FD8D6A314EE32BE00FEABF3 /* libEGOSTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6A214EE32BE00FEABF3 /* libEGOSTouch.a */; };
+		1FD8D6A614EE32C500FEABF3 /* libMPWTalk-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6A514EE32C500FEABF3 /* libMPWTalk-iOS.a */; };
+		1FD8D6A814EE32E200FEABF3 /* libMPWFoundationTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6A714EE32E200FEABF3 /* libMPWFoundationTouch.a */; };
+		1FD8D6AA14EE349100FEABF3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6A914EE349100FEABF3 /* CoreText.framework */; };
+		1FD8D6AC14EE359400FEABF3 /* libiMethodServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6AB14EE359400FEABF3 /* libiMethodServer.a */; };
+		1FD8D6AE14EE35AE00FEABF3 /* libMPWSideWeb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6AD14EE35AE00FEABF3 /* libMPWSideWeb.a */; };
+		1FD8D6B014EE36D600FEABF3 /* libiXmlKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6AF14EE36D600FEABF3 /* libiXmlKit.a */; };
+		1FD8D6B414EE3CBA00FEABF3 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C81A1912F2AAB600AFE7BF /* IconView.m */; };
+		1FD8D6B914EE44DF00FEABF3 /* IconPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8D6B814EE44DF00FEABF3 /* IconPhoneView.m */; };
 		256AC3DA0F4B6AC300CF3369 /* IconAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -28,11 +47,35 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		1F201B6F14E7FF5E007BEFDA /* methods.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = methods.plist; sourceTree = "<group>"; };
+		1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iconapp.classdict; sourceTree = "<group>"; };
 		1F201B7614E80084007BEFDA /* MethodServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MethodServer.framework; path = Library/Frameworks/MethodServer.framework; sourceTree = SDKROOT; };
+		1F4A2ADC1506137F00916B2A /* IconApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IconApp copy-Info.plist"; path = "/Users/marcel/programming/Examples/IconApp_AppKit/IconApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		1F5D63CD14BDE30D00C939EA /* EGOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EGOS.framework; path = Library/Frameworks/EGOS.framework; sourceTree = SDKROOT; };
 		1F5D63CE14BDE30E00C939EA /* EGOS_Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EGOS_Cocoa.framework; path = Library/Frameworks/EGOS_Cocoa.framework; sourceTree = SDKROOT; };
 		1FD157A714CE9F1B002DF2D5 /* MPWFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MPWFoundation.framework; path = Library/Frameworks/MPWFoundation.framework; sourceTree = SDKROOT; };
+		1FD8D67A14EE31EF00FEABF3 /* IconPhoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconPhoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FD8D67C14EE31EF00FEABF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1FD8D67E14EE31EF00FEABF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		1FD8D68014EE31EF00FEABF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		1FD8D68414EE31EF00FEABF3 /* IconPhoneApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IconPhoneApp-Info.plist"; sourceTree = "<group>"; };
+		1FD8D68614EE31EF00FEABF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1FD8D68814EE31EF00FEABF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1FD8D68A14EE31EF00FEABF3 /* IconPhoneApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IconPhoneApp-Prefix.pch"; sourceTree = "<group>"; };
+		1FD8D68B14EE31EF00FEABF3 /* MPWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPWAppDelegate.h; sourceTree = "<group>"; };
+		1FD8D68C14EE31EF00FEABF3 /* MPWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPWAppDelegate.m; sourceTree = "<group>"; };
+		1FD8D68F14EE31EF00FEABF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		1FD8D69214EE31EF00FEABF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		1FD8D69414EE31EF00FEABF3 /* MPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPWViewController.h; sourceTree = "<group>"; };
+		1FD8D69514EE31EF00FEABF3 /* MPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPWViewController.m; sourceTree = "<group>"; };
+		1FD8D6A214EE32BE00FEABF3 /* libEGOSTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEGOSTouch.a; path = "../../Build/Release-iphoneos/libEGOSTouch.a"; sourceTree = "<group>"; };
+		1FD8D6A514EE32C500FEABF3 /* libMPWTalk-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMPWTalk-iOS.a"; path = "../../Build/Development-iphoneos/libMPWTalk-iOS.a"; sourceTree = "<group>"; };
+		1FD8D6A714EE32E200FEABF3 /* libMPWFoundationTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMPWFoundationTouch.a; path = "../../Build/Development-iphoneos/libMPWFoundationTouch.a"; sourceTree = "<group>"; };
+		1FD8D6A914EE349100FEABF3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		1FD8D6AB14EE359400FEABF3 /* libiMethodServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiMethodServer.a; path = "../../Build/Development-iphoneos/libiMethodServer.a"; sourceTree = "<group>"; };
+		1FD8D6AD14EE35AE00FEABF3 /* libMPWSideWeb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMPWSideWeb.a; path = "../../Build/Release-iphoneos/libMPWSideWeb.a"; sourceTree = "<group>"; };
+		1FD8D6AF14EE36D600FEABF3 /* libiXmlKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiXmlKit.a; path = "../../Build/Development-iphoneos/libiXmlKit.a"; sourceTree = "<group>"; };
+		1FD8D6B714EE44DF00FEABF3 /* IconPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconPhoneView.h; sourceTree = "<group>"; };
+		1FD8D6B814EE44DF00FEABF3 /* IconPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconPhoneView.m; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* IconAppAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconAppAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconAppAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* IconApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconApp_Prefix.pch; sourceTree = "<group>"; };
@@ -50,6 +93,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1FD8D67714EE31EF00FEABF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FD8D6B014EE36D600FEABF3 /* libiXmlKit.a in Frameworks */,
+				1FD8D6AE14EE35AE00FEABF3 /* libMPWSideWeb.a in Frameworks */,
+				1FD8D6AC14EE359400FEABF3 /* libiMethodServer.a in Frameworks */,
+				1FD8D6AA14EE349100FEABF3 /* CoreText.framework in Frameworks */,
+				1FD8D6A814EE32E200FEABF3 /* libMPWFoundationTouch.a in Frameworks */,
+				1FD8D6A614EE32C500FEABF3 /* libMPWTalk-iOS.a in Frameworks */,
+				1FD8D6A314EE32BE00FEABF3 /* libEGOSTouch.a in Frameworks */,
+				1FD8D67D14EE31EF00FEABF3 /* UIKit.framework in Frameworks */,
+				1FD8D67F14EE31EF00FEABF3 /* Foundation.framework in Frameworks */,
+				1FD8D68114EE31EF00FEABF3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,7 +134,7 @@
 				C94D4CB4107347C9005C45AA /* IconAppWindowController.m */,
 				C9C81A1812F2AAB600AFE7BF /* IconView.h */,
 				C9C81A1912F2AAB600AFE7BF /* IconView.m */,
-				1F201B6F14E7FF5E007BEFDA /* methods.plist */,
+				1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -101,22 +161,59 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* IconApp.app */,
+				1FD8D67A14EE31EF00FEABF3 /* IconPhoneApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1FD4FF0115836713000D4753 /* GraphicsContext */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GraphicsContext;
+			sourceTree = "<group>";
+		};
+		1FD8D68214EE31EF00FEABF3 /* IconPhoneApp */ = {
+			isa = PBXGroup;
+			children = (
+				1FD8D68B14EE31EF00FEABF3 /* MPWAppDelegate.h */,
+				1FD8D68C14EE31EF00FEABF3 /* MPWAppDelegate.m */,
+				1FD8D68E14EE31EF00FEABF3 /* MainStoryboard_iPhone.storyboard */,
+				1FD8D69114EE31EF00FEABF3 /* MainStoryboard_iPad.storyboard */,
+				1FD8D69414EE31EF00FEABF3 /* MPWViewController.h */,
+				1FD8D69514EE31EF00FEABF3 /* MPWViewController.m */,
+				1FD8D68314EE31EF00FEABF3 /* Supporting Files */,
+				1FD8D6B714EE44DF00FEABF3 /* IconPhoneView.h */,
+				1FD8D6B814EE44DF00FEABF3 /* IconPhoneView.m */,
+			);
+			path = IconPhoneApp;
+			sourceTree = "<group>";
+		};
+		1FD8D68314EE31EF00FEABF3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1FD8D68414EE31EF00FEABF3 /* IconPhoneApp-Info.plist */,
+				1FD8D68514EE31EF00FEABF3 /* InfoPlist.strings */,
+				1FD8D68814EE31EF00FEABF3 /* main.m */,
+				1FD8D68A14EE31EF00FEABF3 /* IconPhoneApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* IconApp */ = {
 			isa = PBXGroup;
 			children = (
-				1F201B7614E80084007BEFDA /* MethodServer.framework */,
-				1FD157A714CE9F1B002DF2D5 /* MPWFoundation.framework */,
-				1F5D63CD14BDE30D00C939EA /* EGOS.framework */,
-				1F5D63CE14BDE30E00C939EA /* EGOS_Cocoa.framework */,
+				1FD8D6AF14EE36D600FEABF3 /* libiXmlKit.a */,
+				1FD8D6AD14EE35AE00FEABF3 /* libMPWSideWeb.a */,
+				1FD8D6AB14EE359400FEABF3 /* libiMethodServer.a */,
+				1FD4FF0115836713000D4753 /* GraphicsContext */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				1FD8D68214EE31EF00FEABF3 /* IconPhoneApp */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				1F4A2ADC1506137F00916B2A /* IconApp copy-Info.plist */,
 			);
 			name = IconApp;
 			sourceTree = "<group>";
@@ -145,7 +242,18 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FD8D6A914EE349100FEABF3 /* CoreText.framework */,
+				1FD8D6A714EE32E200FEABF3 /* libMPWFoundationTouch.a */,
+				1FD8D6A514EE32C500FEABF3 /* libMPWTalk-iOS.a */,
+				1FD8D6A214EE32BE00FEABF3 /* libEGOSTouch.a */,
+				1F201B7614E80084007BEFDA /* MethodServer.framework */,
+				1FD157A714CE9F1B002DF2D5 /* MPWFoundation.framework */,
+				1F5D63CD14BDE30D00C939EA /* EGOS.framework */,
+				1F5D63CE14BDE30E00C939EA /* EGOS_Cocoa.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1FD8D67C14EE31EF00FEABF3 /* UIKit.framework */,
+				1FD8D67E14EE31EF00FEABF3 /* Foundation.framework */,
+				1FD8D68014EE31EF00FEABF3 /* CoreGraphics.framework */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -154,6 +262,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1FD8D67914EE31EF00FEABF3 /* IconPhoneApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1FD8D69914EE31EF00FEABF3 /* Build configuration list for PBXNativeTarget "IconPhoneApp" */;
+			buildPhases = (
+				1FD8D67614EE31EF00FEABF3 /* Sources */,
+				1FD8D67714EE31EF00FEABF3 /* Frameworks */,
+				1FD8D67814EE31EF00FEABF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IconPhoneApp;
+			productName = IconPhoneApp;
+			productReference = 1FD8D67A14EE31EF00FEABF3 /* IconPhoneApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* IconApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "IconApp" */;
@@ -186,17 +311,30 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* IconApp */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* IconApp */,
+				1FD8D67914EE31EF00FEABF3 /* IconPhoneApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1FD8D67814EE31EF00FEABF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FD8D68714EE31EF00FEABF3 /* InfoPlist.strings in Resources */,
+				1FD8D69014EE31EF00FEABF3 /* MainStoryboard_iPhone.storyboard in Resources */,
+				1FD8D69314EE31EF00FEABF3 /* MainStoryboard_iPad.storyboard in Resources */,
+				1FD8D69C14EE323D00FEABF3 /* iconapp.classdict in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,13 +343,25 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				C9A5F741113204F100FDF715 /* IconAppWindow.xib in Resources */,
 				C90F241512F6A6D000F8EA1E /* Icon.icns in Resources */,
-				1F201B7014E7FF5E007BEFDA /* methods.plist in Resources */,
+				1F201B7014E7FF5E007BEFDA /* iconapp.classdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1FD8D67614EE31EF00FEABF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FD8D68914EE31EF00FEABF3 /* main.m in Sources */,
+				1FD8D68D14EE31EF00FEABF3 /* MPWAppDelegate.m in Sources */,
+				1FD8D69614EE31EF00FEABF3 /* MPWViewController.m in Sources */,
+				1FD8D6B414EE3CBA00FEABF3 /* IconView.m in Sources */,
+				1FD8D6B914EE44DF00FEABF3 /* IconPhoneView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,6 +392,30 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
+		1FD8D68514EE31EF00FEABF3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FD8D68614EE31EF00FEABF3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1FD8D68E14EE31EF00FEABF3 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FD8D68F14EE31EF00FEABF3 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		1FD8D69114EE31EF00FEABF3 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FD8D69214EE31EF00FEABF3 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
 		C9A5F73F113204F100FDF715 /* IconAppWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -253,6 +427,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1FD8D69714EE31EF00FEABF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IconPhoneApp/IconPhoneApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "IconPhoneApp/IconPhoneApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1FD8D69814EE31EF00FEABF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IconPhoneApp/IconPhoneApp-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "IconPhoneApp/IconPhoneApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-lz",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -267,6 +507,7 @@
 				INFOPLIST_FILE = "IconApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = IconApp;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -281,6 +522,7 @@
 				INFOPLIST_FILE = "IconApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = IconApp;
+				SDKROOT = "";
 			};
 			name = Release;
 		};
@@ -313,6 +555,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1FD8D69914EE31EF00FEABF3 /* Build configuration list for PBXNativeTarget "IconPhoneApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FD8D69714EE31EF00FEABF3 /* Debug */,
+				1FD8D69814EE31EF00FEABF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "IconApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

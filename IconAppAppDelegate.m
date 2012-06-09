@@ -20,10 +20,14 @@
 //  3. This notice may not be removed or altered from any source
 //     distribution.
 //
+//  This file has been modified by Marcel Weiher to demonstrate use of MPWDrawingContext
+//
+
 
 #import "IconAppAppDelegate.h"
 #import "IconAppWindowController.h"
-#import <MethodServer/MethodServer.h>
+//#import <MethodServer/MethodServer.h>
+#import "AccessorMacros.h"
 
 
 @implementation IconAppAppDelegate
@@ -32,7 +36,7 @@ objectAccessor(MethodServer, methodServer, setMethodServer)
 
 -(void)createMethodServer
 {
-    [self setMethodServer:[[[MethodServer alloc] initWithMethodDictName:@"iconapp"] autorelease]]; 
+    [self setMethodServer:[[[NSClassFromString(@"MethodServer") alloc] initWithMethodDictName:@"iconapp"] autorelease]];
     [[self methodServer] setup];
 }
 

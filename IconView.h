@@ -24,8 +24,11 @@
 //
 
 
-#import <EGOS_Cocoa/MPWView.h>
-
+#if TARGET_OS_IPHONE
+#import "MPWView_iOS.h"
+#else
+#import "MPWView.h"
+#endif
 
 @interface IconView : MPWView
 {

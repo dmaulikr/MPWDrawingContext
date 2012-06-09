@@ -20,9 +20,10 @@
 //  3. This notice may not be removed or altered from any source
 //     distribution.
 //
+//  Modified to use MPWDrawingContext
 
 #import "IconView.h"
-#import <MPWFoundation/MPWFoundation.h>
+#import <Foundation/Foundation.h>
 
 #if !TARGET_OS_IPHONE
 @interface NSShadow (SingleLineShadows)
@@ -74,13 +75,13 @@
 	return NSMakeRect(0, 0, 512, 512);
 }
 
-
+#if 0
 -(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context
 {
     NSLog(@"drawRect:onContext:");
     [self drawMPWRect:[MPWRect rectWithNSRect:rect] onContext:context];
 }
-
+#endif
 
 #if !TARGET_OS_IPHONE
 
@@ -234,11 +235,10 @@
 
 #endif
 
--(void)drawRectObjc:(NSRect)rect onContext:(id <MPWDrawingContext>)context
+-(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context
 {
-    NSLog(@"drawRectObjc");
 	NSSize nativeSize = [self nativeRect].size;
-	NSSize boundsSize = [[NSGraphicsContext currentContext] isDrawingToScreen] ? self.bounds.size : [self nativeRect].size;
+	NSSize boundsSize = /* [context isDrawingToScreen] */ YES ? self.bounds.size : [self nativeRect].size;
 	CGFloat nativeAspect = nativeSize.width / nativeSize.height;
 	CGFloat boundsAspect = boundsSize.width / boundsSize.height;
 	CGFloat scale = nativeAspect > boundsAspect ?

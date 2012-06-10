@@ -42,7 +42,6 @@
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iconapp.classdict; sourceTree = "<group>"; };
-		1F4A2ADC1506137F00916B2A /* IconApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IconApp copy-Info.plist"; path = "/Users/marcel/programming/Examples/IconApp_AppKit/IconApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		1F9B7B6D1584ADCA00DF2940 /* IconPhoneApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IconPhoneApp.entitlements; sourceTree = "<group>"; };
 		1FD4FF0315837787000D4753 /* AccessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessorMacros.h; sourceTree = "<group>"; };
 		1FD4FF0415837787000D4753 /* MPWCGDrawingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWCGDrawingContext.h; sourceTree = "<group>"; };
@@ -79,8 +78,8 @@
 		8D1107310486CEB800E47090 /* IconApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IconApp-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* IconApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90F241412F6A6D000F8EA1E /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
-		C94D4CB3107347C9005C45AA /* IconAppWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconAppWindowController.h; sourceTree = SOURCE_ROOT; };
-		C94D4CB4107347C9005C45AA /* IconAppWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconAppWindowController.m; sourceTree = SOURCE_ROOT; };
+		C94D4CB3107347C9005C45AA /* IconAppWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconAppWindowController.h; sourceTree = "<group>"; };
+		C94D4CB4107347C9005C45AA /* IconAppWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconAppWindowController.m; sourceTree = "<group>"; };
 		C9A5F740113204F100FDF715 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/IconAppWindow.xib; sourceTree = "<group>"; };
 		C9C81A1812F2AAB600AFE7BF /* IconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconView.h; sourceTree = "<group>"; };
 		C9C81A1912F2AAB600AFE7BF /* IconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconView.m; sourceTree = "<group>"; };
@@ -217,7 +216,6 @@
 				1F9B7B731584E1FD00DF2940 /* Shared */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				1F4A2ADC1506137F00916B2A /* IconApp copy-Info.plist */,
 			);
 			name = IconApp;
 			sourceTree = "<group>";

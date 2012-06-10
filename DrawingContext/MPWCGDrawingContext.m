@@ -26,7 +26,13 @@
 @protocol DrawingContextUshortArray <NSObject>
 
 -(unsigned short*)ushorts;
--(unsigned int)count;
+-(NSUInteger)count;
+
+@end
+
+@protocol ContextDrawing <NSObject>
+
+-(void)drawOnContext:aContext;
 
 @end
 
@@ -336,7 +342,7 @@ floatAccessor(fontSize, _setFontSize)
 
 -setShadowOffset:(NSSize)offset blur:(float)blur color:aColor
 {
-    CGContextSetShadowWithColor( context, CGSizeMake(offset.width,offset.height),blur, aColor);
+    CGContextSetShadowWithColor( context, CGSizeMake(offset.width,offset.height),blur, (CGColorRef)aColor);
     return self;
 }
 
@@ -346,7 +352,7 @@ floatAccessor(fontSize, _setFontSize)
 }
 
 
--rect:(NSRect)r
+-nsrect:(NSRect)r
 {
 	CGContextAddRect( context, CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height) );
 	return self;
@@ -394,11 +400,6 @@ floatAccessor(fontSize, _setFontSize)
 -(void)clip
 {
 	CGContextClip( context );
-}
-
--(void)fillRect:(NSRect)r;
-{
-	CGContextFillRect(context, CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height) );
 }
 
 -(void)stroke
@@ -498,9 +499,9 @@ floatAccessor(fontSize, _setFontSize)
     return (id) CTFontCreateWithName ( (CFStringRef) name,(CGFloat) size, NULL );
 }
 
--selectMacRomanFontName:(NSString*)fontname size:(float)fontSize
+-selectMacRomanFontName:(NSString*)fontname size:(float)newFontSize
 {
-    CGContextSelectFont( context,[fontname UTF8String], fontSize, kCGEncodingMacRoman);
+    CGContextSelectFont( context,[fontname UTF8String], newFontSize, kCGEncodingMacRoman);
     return self;
 }
 
@@ -570,7 +571,7 @@ floatAccessor(fontSize, _setFontSize)
 -concat:someArray
 {
     CGFloat a[6];
-    NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,[someArray count] );
+    NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,(int)[someArray count] );
     [self object:someArray toCGFLoats:a];
     [self concat:a[0] :a[1] :a[2] :a[3] :a[4] :a[5]];
     return self;
@@ -585,7 +586,7 @@ floatAccessor(fontSize, _setFontSize)
 -setTextMatrix:someArray
 {
     CGFloat a[6];
-    NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,[someArray count] );
+    NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,(int)[someArray count] );
     [self object:someArray toCGFLoats:a];
     [self setTextMatrix:a[0] :a[1] :a[2] :a[3] :a[4] :a[5]];
     return self;
@@ -598,10 +599,11 @@ floatAccessor(fontSize, _setFontSize)
     return  self;
 }
 
--(void)setFont:aFont
+-(id <MPWDrawingContext>)setFont:aFont
 {
     [self setCurrentFont:aFont];
     CGContextSetFont(context, (CGFontRef)aFont);
+    return self;
 }
 
 #if !TARGET_OS_IPHONE

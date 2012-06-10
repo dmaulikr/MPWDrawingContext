@@ -7,124 +7,82 @@
 		<key>IconView</key>
 		<dict>
 			<key>drawMPWRect:r onContext:aContext</key>
-			<string>
-stdout := MPWByteStream Stdout.
-
-stdout println:'6'.
-
-nativeSize := self nativeRect size.
+			<string>nativeSize := self nativeRect size.
 boundsSize := self bounds size.
-
 nativeAspect := nativeSize x / nativeSize x.
 boundsAspect := boundsSize x / boundsSize y.
 nativeAspect &gt; boundsAspect ifTrue: [  scale := boundsSize x / nativeSize x. ] 
                                                      ifFalse: [  scale := boundsSize y / nativeSize y. ]. 
 
 aContext gsave .
-
-
 trans := (boundsSize - ( nativeSize * scale )) / 2.
 (aContext translate: trans x :trans y )  scale: scale : scale .
 ellipseRect := 32 @ 38 extent: 448 @ 448 .
 aContext  setShadowOffset: (0 @ (-8 * scale)) blur: (scale*12) color:(aContext colorGray:0 alpha: 0.75).
 aContext setFillColorGray: 0.6 alpha: 1.0 .
-
 (aContext ellipseInRect: ellipseRect) fill .
 aContext clearShadow.
-
 (aContext ellipseInRect: ellipseRect) clip .
 
 endPoint :=   ellipseRect origin  + ( 0  @ ellipseRect height).
 colors := #( 1.0 0.85 ) collect: [ :gray |  aContext colorGray:gray alpha: 1.0 ].
-
 aContext drawLinearGradientFrom: ellipseRect origin  to: endPoint colors: colors offsets: #( 1.0 0.0 ) .
-
 ellipseCenterRect :=  ellipseRect inset: 16.
-
 aContext setFillColorGray:0.0 alpha:1.0.
 (aContext ellipseInRect:ellipseCenterRect) fill .
-
 (aContext ellipseInRect:ellipseCenterRect) clip .
 
 centerPoint := ellipseCenterRect center   - (0 @ (0.2  * ellipseCenterRect height )).
-
-
 radius := 0.8 * ellipseCenterRect height .
-
 aContext drawRadialGradientFrom: centerPoint radius:0.0
                                  to:centerPoint radius: radius 
                              colors: ( aContext colorsRed:0 green:#( 0.94 0.62 0.05 0.0 ) blue:#(0.82 0.56 0.35 0.0) alpha: 1.0 )
                             offsets: #( 0.0 0.35 0.6 0.7).
-
-
 centerPoint :=    ellipseCenterRect  center + (0 @ (0.4 * ellipseCenterRect height )).
-
-
-
 aContext drawRadialGradientFrom: centerPoint radius:0.0
                                  to:centerPoint radius: radius 
                              colors: (aContext colorsRed:0 green:#(0.68 0.45) blue:#(1.0 0.62) alpha:#(0.75 0.55 0.0) )
                             offsets: #( 0.0 0.25 0.4 ).
-
 centerPoint :=  ellipseCenterRect center .
-
-
-aContext drawRadialGradientFrom: centerPoint radius:0.0
+aContext drawRadialGradientFrom:centerPoint  radius:0.0
                                  to:centerPoint radius: radius
                              colors: (aContext colorsRed:0 green:#(0.9 0.49) blue:#(0.9 1.0) alpha:#(0.9 0.0))
                             offsets: #( 0.0 0.85 ).
 
-
 aContext setShadowOffset: (0@0)  blur: (scale*12) color: (aContext colorGray:0.0 alpha:1.0).
-
 aContext gsave.
 aContext translate: 130  :140.
-
 aContext setFont:   (aContext fontWithName:'ArialMT' size:345).
 aContext setFillColor: (aContext colorGray:0.9 alpha:1.0)  .
-
 aContext setTextPosition: (0@0).
 aContext show: (NSString stringWithCharacter:10086).
-
 aContext grestore.
-
 aContext clearShadow.
-
-
 
 glossInset := 8.
 glossRadius := ellipseCenterRect width * 0.5 - glossInset .
 center := ellipseRect center.
-
 arcFraction := 0.02 * 180.
-
 arcStartPoint :=  center + ((arcFraction cos  negated ) @ ( arcFraction sin ) * glossRadius).
 arcEndPoint :=  center + ((arcFraction cos  ) @ ( arcFraction sin ) * glossRadius).
-
-
 bottomArcBulgeDistance := 70.
 bottomArcRadius := 2.6.
 arcStart :=  center - (0@bottomArcBulgeDistance).
 bottomRadius := glossRadius * bottomArcRadius.
-
 startAngle := arcFraction .
 endAngle := (180 - arcFraction ).
 
 aContext moveto: arcStartPoint x : arcStartPoint y.
 aContext arcWithCenter: center radius: glossRadius startDegrees: startAngle endDegrees: endAngle  clockwise: 0.
 aContext moveto: arcEndPoint x :arcEndPoint y.
-
 aContext arcFromPoint: arcStart  toPoint: arcStartPoint radius:bottomRadius .
 aContext lineto: arcStartPoint x : arcStartPoint y.
 aContext clip.
 
-
 colors := aContext  colorsGray:1.0 alpha: #(0.55 0.25 0.05 ) . 
-
 gradientStart :=  center x @ (center y - ( glossRadius)).
 endPoint := center x @ (center y + glossRadius).
 aContext drawLinearGradientFrom: gradientStart  to: endPoint colors: colors offsets: #( 0 0.5 1.0 ).
-
 aContext grestore.
 
 1 ifTrue: [ self drawRectObjc: r onContext: aContext ].

@@ -246,19 +246,13 @@
     boundsSize.height / nativeSize.height;
 	
     [context gsave];
-    
-    [context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)];
-    [context scale:scale :scale];
-    
+    [[context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)] scale:scale :scale];
 
 	NSRect ellipseRect = NSMakeRect(32, 38, 448, 448);
-	
     [context setShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75]];
-    
     [context setFillColorGray:0.9 alpha:1.0];
     [[context ellipseInRect:ellipseRect] fill];
     [context clearShadow];
-    
     [[context ellipseInRect:ellipseRect] clip];
     
     [context drawLinearGradientFrom:ellipseRect.origin
@@ -266,29 +260,22 @@
                              colors:[context colorsGray:@[ @1 , @0.85 ] alpha:@1.0 ]
                             offsets:@[ @1.0, @0.0 ]  ];
     
-    
 	NSRect ellipseCenterRect = NSInsetRect(ellipseRect, 16, 16);
-    
     [context setFillColorGray:0.0 alpha:1.0];
     [[context ellipseInRect:ellipseCenterRect] fill];
     [[context ellipseInRect:ellipseCenterRect] clip];
-    
     
     NSPoint centerPoint = NSMakePoint( NSMidX(ellipseCenterRect), NSMidY(ellipseCenterRect) - ellipseCenterRect.size.height*0.2);
     float radius=0.8 * ellipseCenterRect.size.height;
     
     NSArray *colors = [context colorsRed:@0 green:@[ @0.94, @0.62, @0.05, @0.0 ] blue:@[ @0.82, @0.56, @0.35, @0.0] alpha:@1.0];
-    
 	[context drawRadialGradientFrom:centerPoint
                              radius:0.0
                                  to:centerPoint
                              radius:radius
                              colors:colors
                             offsets:@[ @0.0, @0.35, @0.6, @0.7 ]];
-
     centerPoint = NSMakePoint( NSMidX(ellipseCenterRect), NSMidY(ellipseCenterRect) + ellipseCenterRect.size.height*0.4);
-
-    
     colors = [context colorsRed:@0 green:@[ @0.68, @0.45 ] blue:@[ @1.0, @0.62] alpha:@[ @0.75, @0.55, @0.0] ];
 	[context drawRadialGradientFrom:centerPoint
                              radius:0.0
@@ -296,11 +283,8 @@
                              radius:radius
                              colors:colors
                             offsets:@[ @0.0, @0.25, @0.4 ]];
- 
-    
     centerPoint = NSMakePoint( NSMidX(ellipseCenterRect), NSMidY(ellipseCenterRect));
     colors = [context colorsRed:@0 green:@[ @0.9, @0.49 ] blue:@[ @0.9, @1.0] alpha:@[ @0.9, @0.0] ];
-
     [context drawRadialGradientFrom:centerPoint
                              radius:0.0
                                  to:centerPoint
@@ -317,8 +301,6 @@
     [context show:@"\u2766"];
     [context grestore];
     [context clearShadow];
-
-    
     
 	const CGFloat glossInset = 8;
 	CGFloat glossRadius = (ellipseCenterRect.size.width * 0.5) - glossInset;
@@ -328,11 +310,9 @@
 	double arcFraction = 0.02 ;
     NSPoint arcStart = center;
     arcStart.y -= 70;
-	NSPoint arcStartPoint = NSMakePoint(
-                                        center.x - glossRadius * cos(arcFraction * M_PI),
+	NSPoint arcStartPoint = NSMakePoint( center.x - glossRadius * cos(arcFraction * M_PI),
                                         center.y + glossRadius * sin(arcFraction * M_PI));
-	NSPoint arcEndPoint = NSMakePoint(
-                                      center.x + glossRadius * cos(arcFraction * M_PI),
+	NSPoint arcEndPoint = NSMakePoint( center.x + glossRadius * cos(arcFraction * M_PI),
                                       center.y + glossRadius * sin(arcFraction * M_PI));
     float startAngle=arcFraction * 180;
     float endAngle=180-startAngle;

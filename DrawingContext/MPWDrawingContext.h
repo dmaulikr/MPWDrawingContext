@@ -69,11 +69,11 @@
 -(void)eofillAndStroke;
 -(void)fillAndStroke;
 -(void)stroke;
--(void)fillRect:(NSRect)r;
 
 -(NSRect)cliprect;
 
--(id <MPWDrawingContext>)rect:(NSRect)r;
+-(id <MPWDrawingContext>)nsrect:(NSRect)r;
+//-(id <MPWDrawingContext>)rect:(id)r;
 -(id <MPWDrawingContext>)moveto:(float)x :(float)y;
 -(id <MPWDrawingContext>)lineto:(float)x :(float)y;
 -(id <MPWDrawingContext>)curveto:(float)cp1x :(float)cp1y :(float)cp2x :(float)cp2y :(float)x :(float)y;

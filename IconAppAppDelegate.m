@@ -34,16 +34,18 @@
 
 objectAccessor(MethodServer, methodServer, setMethodServer)
 
+
+#if 0
 -(void)createMethodServer
 {
     [self setMethodServer:[[[NSClassFromString(@"MethodServer") alloc] initWithMethodDictName:@"iconapp"] autorelease]];
     [[self methodServer] setup];
 }
-
+#endif
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
-    [self createMethodServer];
+//    [self createMethodServer];
 	windowController = [[IconAppWindowController alloc] init];
 	[[windowController window] makeKeyAndOrderFront:self];
     [[self methodServer] setDelegate:windowController];

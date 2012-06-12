@@ -13,6 +13,7 @@
 		1FD4FF0A15837787000D4753 /* MPWCGDrawingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD4FF0515837787000D4753 /* MPWCGDrawingContext.m */; };
 		1FD4FF0E158377D3000D4753 /* MPWView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD4FF0D158377D3000D4753 /* MPWView.m */; };
 		1FD4FF0F158377D3000D4753 /* MPWView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD4FF0D158377D3000D4753 /* MPWView.m */; };
+		1FD64DAE1587B09600D96811 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1FD64DAD1587B09600D96811 /* README.md */; };
 		1FD8D67D14EE31EF00FEABF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D67C14EE31EF00FEABF3 /* UIKit.framework */; };
 		1FD8D67F14EE31EF00FEABF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D67E14EE31EF00FEABF3 /* Foundation.framework */; };
 		1FD8D68114EE31EF00FEABF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D68014EE31EF00FEABF3 /* CoreGraphics.framework */; };
@@ -52,6 +53,7 @@
 		1FD4FF0B158377D3000D4753 /* MPWView_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWView_iOS.h; sourceTree = "<group>"; };
 		1FD4FF0C158377D3000D4753 /* MPWView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWView.h; sourceTree = "<group>"; };
 		1FD4FF0D158377D3000D4753 /* MPWView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWView.m; sourceTree = "<group>"; };
+		1FD64DAD1587B09600D96811 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1FD8D67A14EE31EF00FEABF3 /* IconPhoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconPhoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD8D67C14EE31EF00FEABF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		1FD8D67E14EE31EF00FEABF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -210,6 +212,7 @@
 		29B97314FDCFA39411CA2CEA /* IconApp */ = {
 			isa = PBXGroup;
 			children = (
+				1FD64DAD1587B09600D96811 /* README.md */,
 				1FD4FF0115836713000D4753 /* DrawingContext */,
 				080E96DDFE201D6D7F000001 /* IconApp */,
 				1FD8D68214EE31EF00FEABF3 /* IconPhoneApp */,
@@ -321,6 +324,7 @@
 				C9A5F741113204F100FDF715 /* IconAppWindow.xib in Resources */,
 				C90F241512F6A6D000F8EA1E /* Icon.icns in Resources */,
 				1F201B7014E7FF5E007BEFDA /* iconapp.classdict in Resources */,
+				1FD64DAE1587B09600D96811 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

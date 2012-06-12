@@ -621,10 +621,16 @@ floatAccessor(fontSize, _setFontSize)
 
 -(id <MPWDrawingContext>)drawImage:(id)anImage
 {
+    CGImageRef cgImage=NULL;
+    CGRect r;
     if ( [anImage respondsToSelector:@selector(CGImage)] ){
         IMAGECLASS *image=(IMAGECLASS*)anImage;
         NSSize s=[image size];
-        CGRect r={ CGPointZero, s.width, s.height };
+        CGRect sr={ CGPointZero, s.width, s.height };
+        r=sr;
+        cgImage=[anImage CGImage];
+    }
+    if ( cgImage) {
         CGContextDrawImage(context, r, [anImage CGImage]);
     } else if ( [anImage respondsToSelector:@selector(drawOnContext:) ] ) {
         [anImage drawOnContext:self];

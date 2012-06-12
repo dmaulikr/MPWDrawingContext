@@ -26,7 +26,9 @@ objectAccessor(MethodServer, methodServer, setMethodServer)
 -(void)createMethodServer
 {
     [self setMethodServer:[[[NSClassFromString(@"MethodServer") alloc] init] autorelease]];
+#if 0
     [[self methodServer] setup];
+#endif
 }
 
 

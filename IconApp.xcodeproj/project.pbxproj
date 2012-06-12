@@ -488,7 +488,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/IconApp/IconApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = IconApp;
-				SDKROOT = "";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -502,7 +502,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/IconApp/IconApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = IconApp;
-				SDKROOT = "";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

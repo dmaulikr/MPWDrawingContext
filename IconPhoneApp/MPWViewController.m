@@ -34,7 +34,9 @@
 -(void)didDefineMethods:server
 {
     NSLog(@"did define methods, -[%@ setNeedsDisplay]",[self view]);
+#if 0
     [[[self view] asyncOnMainThread] setNeedsDisplay];
+#endif
 }
 
 

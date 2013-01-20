@@ -198,10 +198,31 @@ Miscellaneous parameters:
 
     -(id <MPWDrawingContext>)setdashpattern:array phase:(float)phase;
     -(id <MPWDrawingContext>)setlinewidth:(float)width;
+    -(id <MPWDrawingContext>)setlinecapRound;
+    -(id <MPWDrawingContext>)setlinecapSquare;
+    -(id <MPWDrawingContext>)setlinecapButt;
+
 
     -(id <MPWDrawingContext>)setAlpha:(float)alpha;
     -(id <MPWDrawingContext>)setAntialias:(BOOL)doAntialiasing;
     -(id <MPWDrawingContext>)setShadowOffset:(NSSize)offset blur:(float)blur color:(id)aColor;
     -(id <MPWDrawingContext>)clearShadow;
+
+Block-based:
+
+
+    -withShadowOffset:(NSSize)offset blur:(float)blur color:aColor draw:(DrawingBlock)commands;
+    -ingsave:(DrawingBlock)drawingCommands;
+    -(id)drawLater:(DrawingBlock)drawingCommands;
+    -layerWithSize:(NSSize)size content:(DrawingBlock)drawingCommands;
+    -laterWithSize:(NSSize)size content:(DrawingBlock)drawingCommands;
+    -page:(NSDictionary*)parameters content:(DrawingBlock)drawingCommands;
+
+Convenience:
+
+    -(id <MPWDrawingContext>)translate:(id)aPoint;
+    -(id <MPWDrawingContext>)scale:(id)aPointOrNumber;
+    -(id <MPWDrawingContext>)moveto:(id)aPoint;
+    -(id <MPWDrawingContext>)lineto:(id)aPoint;
 
 

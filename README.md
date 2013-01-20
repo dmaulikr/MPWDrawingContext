@@ -27,6 +27,15 @@ can be chained.
 ChangeLog
 ---------
 
+Version 0.3
+-----------
+
+- object-based single argument convenience methods (moveto,lineto,etc.)
+- shadows also block-based
+- linecap
+- drawOnContext: for blocks
+- some unit tests
+
 Version 0.2
 -----------
 
@@ -45,7 +54,7 @@ Future Plans
 ------------
 
 - expand text rendering to include most of CoreText (or equivlaents)
-- more block-based goodnes
+- more types of contexts
 
 Creation
 --------

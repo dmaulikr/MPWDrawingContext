@@ -11,7 +11,7 @@
 
 @interface MPWAbstractCGContext : NSObject 
 
--(BOOL)object:inArray toFloats:(float *)floatArray;
+-(int)object:inArray toFloats:(float *)floatArray maxCount:(int)maxCount;
 
 @end
 

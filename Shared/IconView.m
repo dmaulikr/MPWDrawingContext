@@ -246,7 +246,7 @@
     boundsSize.height / nativeSize.height;
 	
     [context gsave];
-    [[context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)] scale:scale :scale];
+    [[context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)] scale:@(scale)];
 
 	NSRect ellipseRect = NSMakeRect(32, 38, 448, 448);
     [context setShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75]];
@@ -294,7 +294,7 @@
 
     [context setShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0]];
      [context ingsave:^(id <MPWDrawingContext> c ){
-        [c translate:130  :140];
+        [c translate:@[ @130 ,@140]];
         [c setFont:[context fontWithName:@"ArialMT" size:345]];
         [c setFillColorGray:0.9 alpha:1.0];
         [c setTextPosition:NSMakePoint(0, 0)];

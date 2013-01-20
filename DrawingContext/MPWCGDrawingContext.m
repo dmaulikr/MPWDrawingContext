@@ -154,11 +154,12 @@ floatAccessor(fontSize, _setFontSize)
 }
 
 
--(BOOL)object:inArray toCGFLoats:(CGFloat*)cgArray
+-(BOOL)object:inArray toCGFLoats:(CGFloat*)cgArray maxCount:(int)maxCount
 {
     int arrayLength = [(NSArray*)inArray count];
+    arrayLength=MIN(arrayLength,maxCount);
     float floatArray[arrayLength];
-    BOOL didConvert = [self object:inArray toFloats:(float *)floatArray];
+    BOOL didConvert = [self object:inArray toFloats:(float *)floatArray maxCount:arrayLength];
     if ( didConvert ) {
         for (int i=0;i<arrayLength;i++) {
             cgArray[i]=floatArray[i];
@@ -174,7 +175,7 @@ floatAccessor(fontSize, _setFontSize)
     if ( inArray ) {
         int arrayLength = [(NSArray*)inArray count];
         CGFloat cgArray[ arrayLength ];
-        [self object:inArray toCGFLoats:cgArray];
+        [self object:inArray toCGFLoats:cgArray maxCount:arrayLength];
         CGContextSetLineDash(context, phase, cgArray, arrayLength);
     } else {
         CGContextSetLineDash(context, 0.0, NULL, 0);
@@ -326,7 +327,7 @@ static inline CGColorRef asCGColorRef( id aColor ) {
     CGColorSpaceRef colorSapce=CGColorGetColorSpace( firstColor);
     CGFloat locations[ [colors count] + 1 ];
     
-    [self object:offsets toCGFLoats:locations];
+    [self object:offsets toCGFLoats:locations maxCount:[colors count]];
     CGGradientRef gradient = CGGradientCreateWithColors(colorSapce, (CFArrayRef)colors, locations );
     [(id)gradient autorelease];
     return gradient;
@@ -484,7 +485,7 @@ static inline CGColorRef asCGColorRef( id aColor ) {
 {
     CGFloat a[6];
     NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,(int)[someArray count] );
-    [self object:someArray toCGFLoats:a];
+    [self object:someArray toCGFLoats:a maxCount:6];
     [self setTextMatrix:a[0] :a[1] :a[2] :a[3] :a[4] :a[5]];
     return self;
 }

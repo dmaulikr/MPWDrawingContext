@@ -64,29 +64,36 @@
 
 @implementation MPWAbstractCGContext
 
--(BOOL)object:inArray toFloats:(float *)floatArray
+-(int)object:inArray toFloats:(float *)floatArray maxCount:(int)maxCount
 {
-    int arrayLength = [(NSArray*)inArray count];
-    BOOL didConvert=YES;
-    if ( [inArray respondsToSelector:@selector(getReals:length:)] ) {
-        float reals[arrayLength];
-        [inArray getReals:reals length:arrayLength];
-        for (int i=0;i<arrayLength; i++) {
-            floatArray[i]=reals[i];
-        }
-    } else if ( [inArray respondsToSelector:@selector(realAtIndex:)] ) {
-        for (int i=0;i<arrayLength; i++) {
-            floatArray[i]=[inArray realAtIndex:i];
-        }
-    } else if ( [inArray respondsToSelector:@selector(objectAtIndex:)] &&
-               [[inArray objectAtIndex:0] respondsToSelector:@selector(floatValue)]) {
-        for (int i=0;i<arrayLength; i++) {
-            floatArray[i]=[[inArray objectAtIndex:i] floatValue];
+    int arrayLength = 1;
+    int numConverted=arrayLength;
+    if ( [inArray respondsToSelector:@selector(count)]) {
+        arrayLength=[(NSArray*)inArray count];
+        arrayLength=MIN(arrayLength,maxCount);
+        numConverted=arrayLength;
+        if ( [inArray respondsToSelector:@selector(getReals:length:)] ) {
+            float reals[arrayLength];
+            [inArray getReals:reals length:arrayLength];
+            for (int i=0;i<arrayLength; i++) {
+                floatArray[i]=reals[i];
+            }
+        } else if ( [inArray respondsToSelector:@selector(realAtIndex:)] ) {
+            for (int i=0;i<arrayLength; i++) {
+                floatArray[i]=[inArray realAtIndex:i];
+            }
+        } else if ( [inArray respondsToSelector:@selector(objectAtIndex:)] &&
+                   [[inArray objectAtIndex:0] respondsToSelector:@selector(floatValue)]) {
+            for (int i=0;i<arrayLength; i++) {
+                floatArray[i]=[[inArray objectAtIndex:i] floatValue];
+            }
+        } else {
+            numConverted=0;
         }
     } else {
-        didConvert=NO;
+        floatArray[0]=[inArray floatValue];
     }
-    return didConvert;
+    return numConverted;
 }
 
 -color:(CGFloat*)components count:(int)numComponents
@@ -179,7 +186,10 @@
 -methodName:aPoint \
 {\
 float coords[2];\
-[self object:aPoint toFloats:coords];\
+int numCoords=[self object:aPoint toFloats:coords maxCount:2];\
+if ( numCoords==1 ) {\
+     coords[1]=coords[0];\
+}\
 return [self methodName:coords[0] :coords[1]];\
 }\
 
@@ -194,7 +204,7 @@ POINTARGMETHOD(lineto)
 {
     float a[6];
     NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,(int)[someArray count] );
-    [self object:someArray toFloats:a];
+    [self object:someArray toFloats:a maxCount:6];
     [self concat:a[0] :a[1] :a[2] :a[3] :a[4] :a[5]];
     return self;
 }
@@ -316,6 +326,8 @@ POINTARGMETHOD(lineto)
 @end
 
 #if 0
+#import <MPWFoundation/MPWFoundation.h>
+
 @implementation MPWAbstractCGContext(testing)
 
 +(void)testGetFloats
@@ -323,16 +335,18 @@ POINTARGMETHOD(lineto)
     MPWAbstractCGContext *c=[[[self alloc] init] autorelease];
     MPWPoint *p = [MPWPoint pointWithX:20 y:30];
     NSArray *a=@[ @1, @10, @"3", @42 ];
+    NSNumber *b=@22;
     float f[20];
-    [c object:p toFloats:f];
+    [c object:p toFloats:f maxCount:10];
     FLOATEXPECT(f[0], 20, @"x");
     FLOATEXPECT(f[1], 30, @"y");
-    [c object:a toFloats:f];
+    [c object:a toFloats:f maxCount:10];
     FLOATEXPECT(f[0],1, @"first");
     FLOATEXPECT(f[1], 10, @"second");
     FLOATEXPECT(f[2], 3, @"second");
     FLOATEXPECT(f[3], 42, @"second");
-    
+    INTEXPECT( [c object:b toFloats:f maxCount:10], 1, @"only number" );
+    FLOATEXPECT(f[0],22, @"first");
  }
 
 

@@ -102,4 +102,10 @@ typedef void (^DrawingBlock)(id <MPWDrawingContext>);
 
 #endif
 
+-(id <MPWDrawingContext>)translate:(id)aPoint;
+-(id <MPWDrawingContext>)scale:(id)aPointOrNumber;
+-(id <MPWDrawingContext>)moveto:(id)aPoint;
+-(id <MPWDrawingContext>)lineto:(id)aPoint;
+
+
 @end

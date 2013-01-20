@@ -1,19 +1,21 @@
-MPWDrawingContext
-=================
+MPWDrawingContext, version 0.2
+==============================
 
 An Objective-C wrapper around the CoreGraphics CGContextRef.  It includes
 the MPWDrawingContext protocol and the MPWCGDrawingContext class that 
 implements that protocol by calling CoreGraphics CGContextRef functions.
 
 The idea is for the context to be lightweight and straightforward enough
-that including it is a no-brainer, but provides 
+that including it is a no-brainer.
 
 The MPWDrawingContext protocol itself has no dependencies on AppKit, 
-UIKit or CoreGraphics.  
+UIKit or CoreGraphics.
 
 Also includes is MPWView, a View class that subclasses UIView on iOS
 and NSView on OSX and renders using an MPWDrawingContext.  The sample
-applications for both OSX and iOS use the same view code.
+applications for both OSX and iOS use the same view code.  MPWView
+also allows drawing and event-handling code to be specified using
+blocks, so trivial views don't require a subclass.
 
 PhoneGeometry.h
 provides NSPoint, NSSize and NSRect data-types on iOS by mapping them 
@@ -22,12 +24,28 @@ to their CoreGraphcis equivalents there.
 The protocol aims to provide a "fluent" interface so that commands
 can be chained.
 
+ChangeLog
+---------
+
+Version 0.2
+-----------
+
+- actually made separate subclasses for PDF and Bitmap contexts
+- initial pattern support (only for colored patterns)
+- blocks everywhere, especially for re-usable images
+- use images or block-drawables directly as (pattern colors)
+
+
+Version 0.1
+-----------
+
+- first release
+
 Future Plans
 ------------
 
 - expand text rendering to include most of CoreText (or equivlaents)
-- additional specific contexts and context clients (to/from SVG?)
-- ...
+- more block-based goodnes
 
 Creation
 --------

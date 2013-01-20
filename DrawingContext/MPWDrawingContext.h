@@ -11,7 +11,7 @@
 
 @protocol MPWDrawingContext <NSObject>
 
-
+@optional
 -(id <MPWDrawingContext>)translate:(float)x :(float)y;
 -(id <MPWDrawingContext>)scale:(float)x :(float)y;
 -(id <MPWDrawingContext>)rotate:(float)degrees;
@@ -20,6 +20,9 @@
 -(id <MPWDrawingContext>)grestore;
 -(id <MPWDrawingContext>)setdashpattern:array phase:(float)phase;
 -(id <MPWDrawingContext>)setlinewidth:(float)width;
+-(id <MPWDrawingContext>)setlinecapRound;
+-(id <MPWDrawingContext>)setlinecapSquare;
+-(id <MPWDrawingContext>)setlinecapButt;
 
 
 -(id)colorRed:(float)r green:(float)g blue:(float)b alpha:(float)alpha;
@@ -69,11 +72,11 @@
 -(void)eofillAndStroke;
 -(void)fillAndStroke;
 -(void)stroke;
+-(void)fillRect:(NSRect)r;
 
 -(NSRect)cliprect;
 
 -(id <MPWDrawingContext>)nsrect:(NSRect)r;
-//-(id <MPWDrawingContext>)rect:(id)r;
 -(id <MPWDrawingContext>)moveto:(float)x :(float)y;
 -(id <MPWDrawingContext>)lineto:(float)x :(float)y;
 -(id <MPWDrawingContext>)curveto:(float)cp1x :(float)cp1y :(float)cp2x :(float)cp2y :(float)x :(float)y;
@@ -87,5 +90,16 @@
 -(id <MPWDrawingContext>)show:(id)someText;             // NS(Attributed)String
 -(id <MPWDrawingContext>)setTextPosition:(NSPoint)p;
 -(id <MPWDrawingContext>)setFont:aFont;
+
+#if NS_BLOCKS_AVAILABLE
+typedef void (^DrawingBlock)(id <MPWDrawingContext>);
+
+-ingsave:(DrawingBlock)drawingCommands;
+-(id)drawLater:(DrawingBlock)drawingCommands;
+-layerWithSize:(NSSize)size content:(DrawingBlock)drawingCommands;
+-laterWithSize:(NSSize)size content:(DrawingBlock)drawingCommands;
+-page:(NSDictionary*)parameters content:(DrawingBlock)drawingCommands;
+
+#endif
 
 @end

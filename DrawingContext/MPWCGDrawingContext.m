@@ -16,12 +16,20 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
+#if TARGET_OS_IPHONE   
+#define IMAGECLASS  UIImage
+#else
+#define IMAGECLASS  NSBitmapImageRep
+#endif
+
 @protocol DrawingContextRealArray <NSObject>
 
--(float*)reals;
+-(void)getReals:(float*)reals length:(int)arrayLength;
 -(float)realAtIndex:(int)anIndex;
 
 @end
+
+
 
 @protocol DrawingContextUshortArray <NSObject>
 
@@ -29,16 +37,6 @@
 -(NSUInteger)count;
 
 @end
-
-@protocol ContextDrawing <NSObject>
-
--(void)drawOnContext:aContext;
-
-@end
-
-
-// #import <MPWFoundation/MPWFoundation.h>
-
 @implementation MPWCGDrawingContext
 
 scalarAccessor( CGContextRef , context ,_setContext )
@@ -85,48 +83,7 @@ floatAccessor(fontSize, _setFontSize)
 	return self;
 }
 
--initBitmapContextWithSize:(NSSize)size colorSpace:(CGColorSpaceRef)colorspace
-{
-    CGContextRef c=CGBitmapContextCreate(NULL, size.width, size.height, 8, 0, colorspace,   
-                                         (CGColorSpaceGetNumberOfComponents(colorspace) == 4 ? kCGImageAlphaNone : kCGImageAlphaPremultipliedLast)  | kCGBitmapByteOrderDefault );
-    id new = [self initWithCGContext:c];
-    CGContextRelease(c);
-    return new;
 
-}
-
-+rgbBitmapContext:(NSSize)size
-{
-    return [[[self alloc] initBitmapContextWithSize:size colorSpace:CGColorSpaceCreateDeviceRGB()] autorelease];
-}
-
-+cmykBitmapContext:(NSSize)size
-{
-    return [[[self alloc] initBitmapContextWithSize:size colorSpace:CGColorSpaceCreateDeviceCMYK()] autorelease];
-}
-
--(CGImageRef)cgImage
-{
-    return CGBitmapContextCreateImage( context );
-}
-
-#if TARGET_OS_IPHONE   
-#define IMAGECLASS  UIImage
-#else
-#define IMAGECLASS  NSBitmapImageRep
-#endif
-
-
-
--(Class)imageClass
-{
-    return [IMAGECLASS class];
-}
-
--image
-{
-    return [[[[self imageClass] alloc]  initWithCGImage:[self cgImage]] autorelease];
-}
 
 
 -(void)dealloc
@@ -158,6 +115,19 @@ floatAccessor(fontSize, _setFontSize)
     return self;
 }
 
+-beginTransparencyLayer
+{
+    CGContextBeginTransparencyLayer( context, (CFDictionaryRef)[NSDictionary dictionary]);
+    return self;
+}
+
+
+-endTransparencyLayer
+{
+    CGContextEndTransparencyLayer( context );
+    return self;
+}
+
 -_gsave
 {
 	CGContextSaveGState(context);
@@ -183,29 +153,21 @@ floatAccessor(fontSize, _setFontSize)
 	return self;
 }
 
+
 -(BOOL)object:inArray toCGFLoats:(CGFloat*)cgArray
 {
     int arrayLength = [(NSArray*)inArray count];
-    BOOL didConvert=YES;
-    if ( [inArray respondsToSelector:@selector(reals)] ) {
-        float *reals=[inArray reals];
-        for (int i=0;i<arrayLength; i++) {
-            cgArray[i]=reals[i];
+    float floatArray[arrayLength];
+    BOOL didConvert = [self object:inArray toFloats:(float *)floatArray];
+    if ( didConvert ) {
+        for (int i=0;i<arrayLength;i++) {
+            cgArray[i]=floatArray[i];
         }
-    } else if ( [inArray respondsToSelector:@selector(realAtIndex:)] ) {
-        for (int i=0;i<arrayLength; i++) {
-            cgArray[i]=[inArray realAtIndex:i];
-        }
-    } else if ( [inArray respondsToSelector:@selector(objectAtIndex:)] &&
-               [[inArray objectAtIndex:0] respondsToSelector:@selector(floatValue)]) {
-        for (int i=0;i<arrayLength; i++) {
-            cgArray[i]=[[inArray objectAtIndex:i] floatValue];
-        }
-    } else {
-        didConvert=NO;
     }
     return didConvert;
 }
+
+
 
 -setdashpattern:inArray phase:(float)phase
 {
@@ -226,98 +188,42 @@ floatAccessor(fontSize, _setFontSize)
 	return self;
 }
 
--color:(CGFloat*)components count:(int)numComponents
+
+-setlinecapRound
 {
-    CGColorSpaceRef colorSpace=NULL;
-    switch (numComponents) {
-        case 2:
-            colorSpace=CGColorSpaceCreateDeviceGray();
-            break;
-        case 4:
-            colorSpace=CGColorSpaceCreateDeviceRGB();
-            break;
-        case 5:
-            colorSpace=CGColorSpaceCreateDeviceCMYK();
-            break;
-        default:
-            break;
+    CGContextSetLineCap(context, kCGLineCapRound);
+    return self;
+}
+
+-setlinecapSquare
+{
+    CGContextSetLineCap(context, kCGLineCapSquare);
+    return self;
+}
+
+-setlinecapButt
+{
+    CGContextSetLineCap(context, kCGLineCapButt );
+    return self;
+}
+
+static inline CGColorRef asCGColorRef( id aColor ) {
+    CGColorRef cgColor=(CGColorRef)aColor;
+    if ( [aColor respondsToSelector:@selector(CGColor)])  {
+        cgColor=[aColor CGColor];
     }
-    return [(id)CGColorCreate(colorSpace,components) autorelease];
-
-}
-
--(id)colorRed:(float)r green:(float)g blue:(float)b alpha:(float)alpha
-{
-    CGFloat components[]={r,g,b,alpha};
-    return [self color:components count:4];
-}
-
--(id)colorCyan:(float)c magenta:(float)m yellow:(float)y black:(float)k alpha:(float)alpha
-{
-    CGFloat components[]={c,m,y,k,alpha};
-    return [self color:components count:5];
-}
-
--(id)colorGray:(float)gray alpha:(float)alpha
-{
-    CGFloat components[]={gray,alpha};
-    return [self color:components count:2];
-}
-
--colors:(NSArray*)arrayOfComponentArrays
-{
-    NSMutableArray *colorArray=[NSMutableArray array];
-    int numColors=0;
-    int numComponents=[arrayOfComponentArrays count];
-    
-    for ( id colorComponentArrayOrNumber in arrayOfComponentArrays ) {
-        int thisCount = [colorComponentArrayOrNumber respondsToSelector:@selector(count)] ? [(NSArray*)colorComponentArrayOrNumber count]:1 ;
-        numColors=MAX(numColors,thisCount);
-    }
-    for ( int i=0;i<numColors;i++){
-        CGFloat components[5]={0,0,0,0,0};
-        for (int componentIndex = 0;componentIndex < numComponents; componentIndex++ ) {
-            id currentComponent=[arrayOfComponentArrays objectAtIndex:componentIndex];
-            if ( [currentComponent respondsToSelector:@selector(count)] ) {
-                int sourceIndex=MIN([(NSArray*)currentComponent count]-1,i);
-                if ( [currentComponent respondsToSelector:@selector(realAtIndex:)] ) {
-                    components[componentIndex]=[currentComponent realAtIndex:sourceIndex];
-                } else {
-                    components[componentIndex]=[[currentComponent objectAtIndex:sourceIndex] doubleValue];
-                }
-            } else {
-                components[componentIndex]=[currentComponent doubleValue];
-            }
-        }
-        [colorArray addObject:[self color:components count:numComponents]];
-    }
-    return colorArray;
-}
-
--(NSArray*)colorsRed:red green:green blue:blue alpha:alpha
-{
-    return [self colors:[NSArray arrayWithObjects:red,green,blue,alpha, nil]];
-}
-
--(NSArray*)colorsCyan:(id)c magenta:(id)m yellow:(id)y black:(id)k alpha:(id)alpha
-{
-    return [self colors:[NSArray arrayWithObjects:c,m,y,k,alpha, nil]];
-}
-
--(NSArray*)colorsGray:gray alpha:alpha
-{
-    return [self colors:[NSArray arrayWithObjects:gray,alpha, nil]];
+    return cgColor;
 }
 
 -setFillColor:aColor 
 {
-    CGContextSetFillColorWithColor( context, (CGColorRef)aColor );
+    CGContextSetFillColorWithColor( context, asCGColorRef(aColor) );
 	return self;
 }
 
 -setStrokeColor:aColor 
 {
-    CGContextSetStrokeColorWithColor( context, (CGColorRef)aColor );
+    CGContextSetStrokeColorWithColor( context,  asCGColorRef(aColor) );
 	return self;
 }
 
@@ -375,19 +281,15 @@ floatAccessor(fontSize, _setFontSize)
 	CGContextDrawPath( context, kCGPathFillStroke );
 }
 
-
 -(void)eofillAndStroke
 {
 	CGContextDrawPath( context, kCGPathEOFillStroke );
 }
 
-
 -(void)eofill
 {
     CGContextEOFillPath( context );
 }
-
-
 
 -(void)fillDarken
 {
@@ -400,6 +302,11 @@ floatAccessor(fontSize, _setFontSize)
 -(void)clip
 {
 	CGContextClip( context );
+}
+
+-(void)fillRect:(NSRect)r;
+{
+	CGContextFillRect(context, CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height) );
 }
 
 -(void)stroke
@@ -455,6 +362,7 @@ floatAccessor(fontSize, _setFontSize)
 	return self;
 }
 
+
 -lineto:(float)x :(float)y
 {
 	CGContextAddLineToPoint(context, x, y );	
@@ -489,14 +397,8 @@ floatAccessor(fontSize, _setFontSize)
 
 -setCharaterSpacing:(float)ax
 {
-    //    NSLog(@"character spacing: %g",ax);
     CGContextSetCharacterSpacing( context, ax );
     return self;
-}
-
--fontWithName:(NSString*)name size:(float)size
-{
-    return (id) CTFontCreateWithName ( (CFStringRef) name,(CGFloat) size, NULL );
 }
 
 -selectMacRomanFontName:(NSString*)fontname size:(float)newFontSize
@@ -543,6 +445,10 @@ floatAccessor(fontSize, _setFontSize)
     return self;
 }
 
+-layerWithSize:(NSSize)size
+{
+    return [[[MPWCGLayerContext alloc] initWithCGContext:[self context] size:size] autorelease];
+}
 
 
 -setTextModeFill:(BOOL)fill stroke:(BOOL)stroke clip:(BOOL)clip
@@ -565,15 +471,6 @@ floatAccessor(fontSize, _setFontSize)
 -concat:(float)m11 :(float)m12  :(float)m21  :(float)m22  :(float)tx  :(float)ty
 {
     CGContextConcatCTM(context, CGAffineTransformMake(m11,m12,m21,m22,tx,ty));
-    return self;
-}
-
--concat:someArray
-{
-    CGFloat a[6];
-    NSAssert2( [someArray count] == 6, @"concat %@ expects 6-element array, got %d",someArray,(int)[someArray count] );
-    [self object:someArray toCGFLoats:a];
-    [self concat:a[0] :a[1] :a[2] :a[3] :a[4] :a[5]];
     return self;
 }
 
@@ -617,26 +514,14 @@ floatAccessor(fontSize, _setFontSize)
 }
 #endif
 
-
-
--(id <MPWDrawingContext>)drawImage:(id)anImage
+-(void)drawBitmapImage:anImage
 {
-    CGImageRef cgImage=NULL;
-    CGRect r;
-    if ( [anImage respondsToSelector:@selector(CGImage)] ){
-        IMAGECLASS *image=(IMAGECLASS*)anImage;
-        NSSize s=[image size];
-        CGRect sr={ CGPointZero, s.width, s.height };
-        r=sr;
-        cgImage=[anImage CGImage];
-    }
-    if ( cgImage) {
-        CGContextDrawImage(context, r, [anImage CGImage]);
-    } else if ( [anImage respondsToSelector:@selector(drawOnContext:) ] ) {
-        [anImage drawOnContext:self];
-    }
-    return self;
+    IMAGECLASS *image=(IMAGECLASS*)anImage;
+    NSSize s=[image size];
+    CGRect r={ CGPointZero, s.width, s.height };
+    CGContextDrawImage(context, r, [anImage CGImage]);
 }
+
 
 -(void)resetTextMatrix
 {
@@ -656,36 +541,296 @@ floatAccessor(fontSize, _setFontSize)
     return self;
 }
 
--(id <MPWDrawingContext>)show:(NSAttributedString*)someText 
+#if NS_BLOCKS_AVAILABLE
+
+-layerWithSize:(NSSize)size content:(DrawingBlock)block
 {
-    if ( [someText isKindOfClass:[NSString class]]) {
-        NSMutableDictionary *attrs=[NSMutableDictionary dictionaryWithCapacity:4];
-        if ( [self currentFont] ) {
-            id  ctFont=[self currentFont];           // assumes current font is a CTFont/NSFont
-            [attrs setObject:ctFont forKey:@"NSFont"];
-            [attrs setObject:ctFont forKey:@"CTFont"];
-        }
-        [attrs setObject:[NSNumber numberWithBool:YES] forKey:(id)kCTForegroundColorFromContextAttributeName];
-        someText=[[[NSAttributedString alloc] initWithString:(NSString*)someText attributes:attrs] autorelease];
+    MPWCGLayerContext *layerContext=[self layerWithSize:size];
+    block( layerContext);
+    return layerContext;
+}
+
+-bitmapWithSize:(NSSize)size content:(DrawingBlock)block
+{
+    MPWCGBitmapContext *bitmapContext=[MPWCGBitmapContext rgbBitmapContext:size];
+    block( bitmapContext);
+    return [bitmapContext image];
+}
+#endif
+
+@end
+
+@implementation MPWCGLayerContext
+
+-(id)initWithCGContext:(CGContextRef)baseContext size:(NSSize)s
+{
+    CGSize cgsize={s.width,s.height};
+    CGLayerRef newlayer=CGLayerCreateWithContext(baseContext, cgsize,  NULL);
+    CGContextRef layerContext=CGLayerGetContext(newlayer);
+    if ( (self=[super initWithCGContext:layerContext])) {
+        layer=newlayer;
     }
-    CTLineRef line = CTLineCreateWithAttributedString((CFAttributedStringRef) someText);
-    [self drawTextLine:line];
-    CFRelease(line);
+    return self;
+}
+
+-(void)drawOnContext:(MPWCGDrawingContext*)aContext
+{
+    CGContextDrawLayerAtPoint([aContext context],  CGPointMake(0, 0),layer);
+}
+
+-(void)dealloc
+{
+    if ( layer) {
+        CGLayerRelease(layer);
+    }
+    [super dealloc];    
+}
+
+@end
+
+@implementation MPWCGPDFContext
+
+
++pdfContextWithTarget:target mediaBox:(NSRect)bbox
+{
+    CGRect mediaBox={bbox.origin.x,bbox.origin.y,bbox.size.width,bbox.size.height};
+    CGContextRef newContext = CGPDFContextCreate(CGDataConsumerCreateWithCFData((CFMutableDataRef)target), &mediaBox, NULL );
+    return [self contextWithCGContext:newContext];
+}
+
++pdfContextWithTarget:target size:(NSSize)pageSize
+{
+    return [self pdfContextWithTarget:target mediaBox:NSMakeRect(0, 0, pageSize.width, pageSize.height)];
+}
+
++pdfContextWithTarget:target
+{
+    return [self pdfContextWithTarget:target size:NSMakeSize( 595, 842)];
+}
+
+
+-(void)beginPage:(NSDictionary*)parameters
+{
+    CGPDFContextBeginPage( context , (CFDictionaryRef)parameters);
+}
+
+-(void)endPage
+{
+    CGPDFContextEndPage( context );
+}
+
+-(void)close
+{
+    CGPDFContextClose( context );
+}
+
+
+-page:(NSDictionary*)parameters content:(DrawingBlock)drawingCommands
+{
+    @try {
+        [self beginPage:parameters];
+        drawingCommands(self);
+    } @finally {
+        [self endPage];
+    }
     return self;
 }
 
 
+-laterWithSize:(NSSize)size content:(DrawingBlock)drawingCommands
+{
+    return [self layerWithSize:size content:drawingCommands];
+}
+
 
 @end
 
 
-@implementation MPWCGDrawingContext(testing)
+#if NS_BLOCKS_AVAILABLE
 
-+testSelectors
+@implementation MPWDrawingCommands(patterns)
+
+
+void ColoredPatternCallback(void *info, CGContextRef context)
 {
-    return [NSArray arrayWithObjects:
-//            @"testColorCreation",
-            nil];
+    MPWDrawingCommands *command=(MPWDrawingCommands*)info;
+    [command drawOnContext:[MPWCGDrawingContext contextWithCGContext:context]];
+}
+
+-(CGColorRef)CGColor
+{
+    CGPatternCallbacks coloredPatternCallbacks = {0, ColoredPatternCallback, NULL};
+    CGPatternRef pattern=CGPatternCreate(self, CGRectMake(0, 0, size.width, size.height), CGAffineTransformIdentity, size.width, size.height, kCGPatternTilingNoDistortion, true , &coloredPatternCallbacks) ;
+    CGColorSpaceRef coloredPatternColorSpace = CGColorSpaceCreatePattern(NULL);
+    CGFloat alpha = 1.0;
+    
+    CGColorRef coloredPatternColor = CGColorCreateWithPattern(coloredPatternColorSpace, pattern, &alpha);
+    CGPatternRelease(pattern);
+    CGColorSpaceRelease(coloredPatternColorSpace);
+    [(id)coloredPatternColor autorelease];
+    return coloredPatternColor;
 }
 
 @end
+
+#endif
+
+
+
+@implementation MPWCGBitmapContext
+
+-initBitmapContextWithSize:(NSSize)size colorSpace:(CGColorSpaceRef)colorspace
+{
+    CGContextRef c=CGBitmapContextCreate(NULL, size.width, size.height, 8, 0, colorspace,   
+                                         (CGColorSpaceGetNumberOfComponents(colorspace) == 4 ? kCGImageAlphaNone : kCGImageAlphaPremultipliedLast)  | kCGBitmapByteOrderDefault );
+    if ( !c ) {
+        [self dealloc];
+        return nil;
+    }
+    id new = [self initWithCGContext:c];
+    CGContextRelease(c);
+    return new;
+    
+}
+
++rgbBitmapContext:(NSSize)size
+{
+    return [[[self alloc] initBitmapContextWithSize:size colorSpace:CGColorSpaceCreateDeviceRGB()] autorelease];
+}
+
+
+
++cmykBitmapContext:(NSSize)size
+{
+    return [[[self alloc] initBitmapContextWithSize:size colorSpace:CGColorSpaceCreateDeviceCMYK()] autorelease];
+}
+
+-(CGImageRef)cgImage
+{
+    return CGBitmapContextCreateImage( context );
+}
+
+
+
+-(Class)imageClass
+{
+    return [IMAGECLASS class];
+}
+
+-image
+{
+    CGImageRef cgImage=[self cgImage];
+    id image= [[[[self imageClass] alloc]  initWithCGImage:cgImage] autorelease];
+    CGImageRelease(cgImage);
+    return image;
+}
+
+
+
+@end
+
+#if TARGET_OS_IPHONE
+@implementation UIImage(CGColor)
+
+-(CGColorRef)CGColor
+{
+    return [[UIColor colorWithPatternImage:self] CGColor];
+}
+@end
+
+#elif TARGET_OS_MAC
+
+@implementation NSImage(CGColor)
+
+-(CGColorRef)CGColor {   return [[NSColor colorWithPatternImage:self] CGColor]; };
+@end
+
+@implementation NSBitmapImageRep(CGColor)
+
+-(CGColorRef)CGColor
+{
+    return [[[[NSImage alloc] initWithCGImage:[self CGImage] size:[self size]] autorelease] CGColor];
+}
+@end
+#endif
+
+#if 0
+#if !TARGET_OS_IPHONE
+
+#import "EGOSTesting.h"
+
+
+@implementation MPWCGBitmapContext(testing)
+
+
+
++(NSBitmapImageRep*)bitmapForImageNamed:(NSString*)name
+{
+    NSString *path=[[NSBundle bundleForClass:self] pathForImageResource:name];
+    return [NSBitmapImageRep imageRepWithContentsOfFile:path];
+}
+
++(void)testBasicShapesGetRendered
+{
+    MPWCGBitmapContext *c=[self rgbBitmapContext:NSMakeSize(400, 400)];
+    SEL ops[3]={ @selector(fill),@selector(stroke),@selector(fillAndStroke)};
+    
+    [c setFillColor:[c colorRed:0 green:1 blue:0 alpha:1]];
+    [c setStrokeColor:[c colorRed:1 green:0 blue:0 alpha:1]];
+    [c setlinewidth:4];
+    NSRect r=NSMakeRect(5, 5, 30, 20);
+
+    for (int i=0;i<3;i++) {
+        [c gsave];
+        [c nsrect:r];
+        [c performSelector:ops[i]];
+        [c translate:35 :0];
+        [c ellipseInRect:r];
+        [c performSelector:ops[i]];
+        [c grestore];
+        [c translate:0 :40];
+    }    
+    IMAGEEXPECT( [c image], BUNDLEIMAGE(@"context-render-test1"), @"basic-shape-rendering");    
+}
+
+
++(void)testSimpleColorCreation
+{
+    MPWCGDrawingContext *c=[self rgbBitmapContext:NSMakeSize(500,500)];
+    struct color  {
+        float r,g,b;
+    } colors[] = {
+        {1,0,0},
+        {0,1,0},
+        {0,0,1},
+        {1,1,0},
+        {1,0,1},
+        {0,1,1},
+        {1,1,1}
+    };
+    for (int i=0;i<7;i++) {
+        id c1=[c colorRed:colors[i].r green:colors[i].g blue:colors[i].b alpha:1];
+        [[[c setFillColor:c1] nsrect:NSMakeRect(0, 0, 10, 100)] fill ];
+        [c translate:10 :0];
+    }
+    IMAGEEXPECT( [c image], BUNDLEIMAGE(@"simple-color-creation"), @"simple-color-creation");
+}
+
++testSelectors
+{
+    return @[
+        @"testBasicShapesGetRendered",
+        @"testSimpleColorCreation"
+    ];
+}
+
+@end
+
+#endif
+
+@implementation MPWCGPDFContext(testing)
+
++testSelectors {  return @[]; }
+
+@end
+#endif

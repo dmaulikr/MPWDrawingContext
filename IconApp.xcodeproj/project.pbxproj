@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		1F201B7014E7FF5E007BEFDA /* iconapp.classdict in Resources */ = {isa = PBXBuildFile; fileRef = 1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */; };
+		1FB7F59816AC7651001BF2EB /* MPWAbstractCGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7F59716AC7651001BF2EB /* MPWAbstractCGContext.m */; };
+		1FB7F59B16AC76F3001BF2EB /* MPWAbstractCGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7F59716AC7651001BF2EB /* MPWAbstractCGContext.m */; };
 		1FD4FF0915837787000D4753 /* MPWCGDrawingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD4FF0515837787000D4753 /* MPWCGDrawingContext.m */; };
 		1FD4FF0A15837787000D4753 /* MPWCGDrawingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD4FF0515837787000D4753 /* MPWCGDrawingContext.m */; };
 		1FD4FF0E158377D3000D4753 /* MPWView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD4FF0D158377D3000D4753 /* MPWView.m */; };
@@ -44,6 +46,8 @@
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = iconapp.classdict; sourceTree = "<group>"; };
 		1F9B7B6D1584ADCA00DF2940 /* IconPhoneApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IconPhoneApp.entitlements; sourceTree = "<group>"; };
+		1FB7F59716AC7651001BF2EB /* MPWAbstractCGContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWAbstractCGContext.m; sourceTree = "<group>"; };
+		1FB7F59A16AC76E6001BF2EB /* MPWAbstractCGContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWAbstractCGContext.h; sourceTree = "<group>"; };
 		1FD4FF0315837787000D4753 /* AccessorMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessorMacros.h; sourceTree = "<group>"; };
 		1FD4FF0415837787000D4753 /* MPWCGDrawingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPWCGDrawingContext.h; sourceTree = "<group>"; };
 		1FD4FF0515837787000D4753 /* MPWCGDrawingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPWCGDrawingContext.m; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 		1FD4FF0115836713000D4753 /* DrawingContext */ = {
 			isa = PBXGroup;
 			children = (
+				1FB7F59716AC7651001BF2EB /* MPWAbstractCGContext.m */,
+				1FB7F59A16AC76E6001BF2EB /* MPWAbstractCGContext.h */,
 				1FD4FF0B158377D3000D4753 /* MPWView_iOS.h */,
 				1FD4FF0C158377D3000D4753 /* MPWView.h */,
 				1FD4FF0D158377D3000D4753 /* MPWView.m */,
@@ -280,7 +286,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "IconApp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -342,6 +348,7 @@
 				1FD8D6B914EE44DF00FEABF3 /* IconPhoneView.m in Sources */,
 				1FD4FF0A15837787000D4753 /* MPWCGDrawingContext.m in Sources */,
 				1FD4FF0F158377D3000D4753 /* MPWView.m in Sources */,
+				1FB7F59B16AC76F3001BF2EB /* MPWAbstractCGContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +362,7 @@
 				C9C81A1A12F2AAB600AFE7BF /* IconView.m in Sources */,
 				1FD4FF0915837787000D4753 /* MPWCGDrawingContext.m in Sources */,
 				1FD4FF0E158377D3000D4753 /* MPWView.m in Sources */,
+				1FB7F59816AC7651001BF2EB /* MPWAbstractCGContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -500,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -514,7 +524,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -528,7 +537,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

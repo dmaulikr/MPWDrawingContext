@@ -293,13 +293,13 @@
                             offsets:@[ @0.0, @0.85 ]];
 
     [context setShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0]];
-    [context gsave];
-    [context translate:130  :140];
-    [context setFont:[context fontWithName:@"ArialMT" size:345]];
-    [context setFillColorGray:0.9 alpha:1.0];
-    [context setTextPosition:NSMakePoint(0, 0)];
-    [context show:@"\u2766"];
-    [context grestore];
+     [context ingsave:^(id <MPWDrawingContext> c ){
+        [c translate:130  :140];
+        [c setFont:[context fontWithName:@"ArialMT" size:345]];
+        [c setFillColorGray:0.9 alpha:1.0];
+        [c setTextPosition:NSMakePoint(0, 0)];
+        [c show:@"\u2766"];
+    }];
     [context clearShadow];
     
 	const CGFloat glossInset = 8;

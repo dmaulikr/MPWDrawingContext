@@ -9,17 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-//#import <EGOS/MPWDrawingContext.h>
-#import "MPWDrawingContext.h"
-
+#import <EGOS/MPWDrawingContext.h>
 
 
 @interface MPWView : NSView {
-//	id <MPWDrawingContext> context;
+    id drawingBlock;
 }
+
 
 -(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context;
 
-
+@property(nonatomic,retain) id drawingBlock;
 
 @end

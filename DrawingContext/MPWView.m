@@ -13,10 +13,31 @@
 #else
 #import "MPWView.h"
 #endif
-//#import <EGOS_Cocoa/MPWCGDrawingContext.h>
-#import "MPWCGDrawingContext.h"
+#import <EGOS_Cocoa/MPWCGDrawingContext.h>
 
 @implementation MPWView
+
+@synthesize drawingBlock;
+
+-(void)registerForMethodsDefined
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(methodsDefined) name:@"methodsDefined" object:nil];
+}
+
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        [self registerForMethodsDefined];
+    }
+    return self;
+}
+
+-(void)awakeFromNib
+{
+    [self registerForMethodsDefined];
+}
 
 
 -(void)drawOnContext:(id <MPWDrawingContext>)context
@@ -27,7 +48,11 @@
 
 -(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context
 {
-	[self drawOnContext:context];
+    if ( drawingBlock ) {
+        ((DrawingBlock)drawingBlock)(context);
+    }
+    [self drawOnContext:context];
+        
 }
 
 -(void)drawLayer:(CALayer*)layer inDrawingContext:(id <MPWDrawingContext>)context
@@ -50,7 +75,14 @@
 	[context translate:0  :[self bounds].size.height];
 	[[context scale:1  :-1] setlinewidth:1];
 #endif
+//    NSLog(@"context: %@",context);
 	[self drawRect:rect onContext:context];
+}
+
+-(void)methodsDefined
+{
+    NSLog(@"new methods defined update display in MPWView");
+    [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
 }
 
 
@@ -63,6 +95,13 @@
 	[[context scale:1  :-1] setlinewidth:1];
 #endif
     [self drawLayer:layer inDrawingContext:context];
+}
+
+-(void)dealloc
+{
+    [drawingBlock release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 @end

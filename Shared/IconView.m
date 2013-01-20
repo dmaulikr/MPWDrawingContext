@@ -249,10 +249,9 @@
     [[context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)] scale:@(scale)];
 
 	NSRect ellipseRect = NSMakeRect(32, 38, 448, 448);
-    [context setShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75]];
-    [context setFillColorGray:0.9 alpha:1.0];
-    [[context ellipseInRect:ellipseRect] fill];
-    [context clearShadow];
+    [context withShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75] draw:^(id <MPWDrawingContext> c ){
+        [[[c setFillColorGray:0.9 alpha:1.0] ellipseInRect:ellipseRect] fill];
+    }];
     [[context ellipseInRect:ellipseRect] clip];
     
     [context drawLinearGradientFrom:ellipseRect.origin
@@ -292,15 +291,15 @@
                              colors:colors
                             offsets:@[ @0.0, @0.85 ]];
 
-    [context setShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0]];
-     [context ingsave:^(id <MPWDrawingContext> c ){
-        [c translate:@[ @130 ,@140]];
-        [c setFont:[context fontWithName:@"ArialMT" size:345]];
-        [c setFillColorGray:0.9 alpha:1.0];
-        [c setTextPosition:NSMakePoint(0, 0)];
-        [c show:@"\u2766"];
+    [context withShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0] draw:^(id <MPWDrawingContext> c ){
+            [context ingsave:^(id <MPWDrawingContext> c ){
+                [c translate:@[ @130 ,@140]];
+                [c setFont:[context fontWithName:@"ArialMT" size:345]];
+                [c setFillColorGray:0.9 alpha:1.0];
+                [c setTextPosition:NSMakePoint(0, 0)];
+                [c show:@"\u2766"];
     }];
-    [context clearShadow];
+    }];
     
 	const CGFloat glossInset = 8;
 	CGFloat glossRadius = (ellipseCenterRect.size.width * 0.5) - glossInset;

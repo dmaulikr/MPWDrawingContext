@@ -267,6 +267,30 @@ POINTARGMETHOD(lineto)
 
 #if NS_BLOCKS_AVAILABLE
 
+-(id)setShadowOffset:(NSSize)offset blur:(float)blur color:aColor
+{
+    return self;
+}
+
+-(id)clearShadow
+{
+    return self;
+}
+
+-withShadowOffset:(NSSize)offset blur:(float)blur color:aColor draw:(DrawingBlock)commands
+{
+    @try {
+        [self setShadowOffset:offset blur:blur color:aColor];
+        [commands drawOnContext:self];
+    }
+    @finally {
+        [self clearShadow];
+    }
+    return self;
+}
+
+
+
 -(id)drawLater:(DrawingBlock)commands
 {
     return [[[MPWDrawingCommands alloc] initWithBlock:commands] autorelease];
@@ -324,8 +348,8 @@ POINTARGMETHOD(lineto)
 #endif
 
 @end
-
 #if 0
+
 #import <MPWFoundation/MPWFoundation.h>
 
 @implementation MPWAbstractCGContext(testing)
@@ -358,3 +382,4 @@ POINTARGMETHOD(lineto)
 
 @end
 #endif
+

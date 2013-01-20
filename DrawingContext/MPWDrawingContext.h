@@ -94,6 +94,7 @@
 #if NS_BLOCKS_AVAILABLE
 typedef void (^DrawingBlock)(id <MPWDrawingContext>);
 
+-withShadowOffset:(NSSize)offset blur:(float)blur color:aColor draw:(DrawingBlock)commands;
 -ingsave:(DrawingBlock)drawingCommands;
 -(id)drawLater:(DrawingBlock)drawingCommands;
 -layerWithSize:(NSSize)size content:(DrawingBlock)drawingCommands;

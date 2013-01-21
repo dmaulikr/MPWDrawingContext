@@ -76,7 +76,7 @@
 }
 
 #if 0
--(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context
+-(void)drawRect:(NSRect)rect onContext:(Drawable)context
 {
     NSLog(@"drawRect:onContext:");
     [self drawMPWRect:[MPWRect rectWithNSRect:rect] onContext:context];
@@ -85,7 +85,7 @@
 
 #if !TARGET_OS_IPHONE
 
--(void)drawRect_Cocoa:(NSRect)rect onContext:(id <MPWDrawingContext>)context
+-(void)drawRect_Cocoa:(NSRect)rect onContext:(Drawable)context
 {
 	NSSize nativeSize = [self nativeRect].size;
 	NSSize boundsSize = [[NSGraphicsContext currentContext] isDrawingToScreen] ? self.bounds.size : [self nativeRect].size;
@@ -235,7 +235,7 @@
 
 #endif
 
--(void)drawRect:(NSRect)rect onContext:(id <MPWDrawingContext>)context
+-(void)drawRect:(NSRect)rect onContext:(Drawable)context
 {
 	NSSize nativeSize = [self nativeRect].size;
 	NSSize boundsSize = /* [context isDrawingToScreen] */ YES ? self.bounds.size : [self nativeRect].size;
@@ -249,7 +249,7 @@
     [[context translate:0.5 * (boundsSize.width - scale * nativeSize.width) :0.5 * (boundsSize.height - scale * nativeSize.height)] scale:@(scale)];
 
 	NSRect ellipseRect = NSMakeRect(32, 38, 448, 448);
-    [context withShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75] draw:^(id <MPWDrawingContext> c ){
+    [context withShadowOffset:NSMakeSize(0, -8 * scale) blur:12 * scale  color:[context  colorGray:0 alpha: 0.75] draw:^(Drawable c ){
         [[[c setFillColorGray:0.9 alpha:1.0] ellipseInRect:ellipseRect] fill];
     }];
     [[context ellipseInRect:ellipseRect] clip];
@@ -291,8 +291,8 @@
                              colors:colors
                             offsets:@[ @0.0, @0.85 ]];
 
-    [context withShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0] draw:^(id <MPWDrawingContext> c ){
-            [context ingsave:^(id <MPWDrawingContext> c ){
+    [context withShadowOffset:NSMakeSize(0, 0) blur:12 * scale  color:[context  colorGray:0 alpha: 1.0] draw:^(Drawable c ){
+            [context ingsave:^(Drawable c ){
                 [c translate:@[ @130 ,@140]];
                 [c setFont:[context fontWithName:@"ArialMT" size:345]];
                 [c setFillColorGray:0.9 alpha:1.0];

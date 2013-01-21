@@ -110,3 +110,6 @@ typedef void (^DrawingBlock)(id <MPWDrawingContext>);
 
 
 @end
+
+typedef id <MPWDrawingContext> Drawable;
+

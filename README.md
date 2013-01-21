@@ -1,4 +1,4 @@
-MPWDrawingContext, version 0.2
+MPWDrawingContext, version 0.3
 ==============================
 
 An Objective-C wrapper around the CoreGraphics CGContextRef.  It includes

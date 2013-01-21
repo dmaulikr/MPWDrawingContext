@@ -53,8 +53,9 @@ Version 0.1
 Future Plans
 ------------
 
-- expand text rendering to include most of CoreText (or equivlaents)
-- more types of contexts
+- expand text rendering to include most of CoreText (or equivalents)
+- more context types, for example rendering to CALayers, SVG and Canvas or OpenGL textures
+- image processing options, both stand-alone and as layered contexts
 
 Creation
 --------

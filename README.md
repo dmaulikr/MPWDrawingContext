@@ -225,4 +225,62 @@ Convenience:
     -(id <MPWDrawingContext>)moveto:(id)aPoint;
     -(id <MPWDrawingContext>)lineto:(id)aPoint;
 
+Infrequently Asked Questions
+----------------------------
 
+
+**Why would anyone need an Objective-C drawing context?**
+
+In short, while CoreGraphics is an awesome graphics subsystem, not having OO features makes CGContext closed to extension by anyone but Apple, and somewhat unpleasant to use, IMHO.
+
+I explain a bit more about the motivation on my blog:   http://blog.metaobject.com/2012/06/pleasant-objective-c-drawing-context.html
+
+**Who cares about possible future expansion when that means there's lots of code to integrate with nasty dependencies?**
+
+It used to be just 1 Class,  1 Protocol, 3 extra include files to equalize some of the differences between iOS and OSX (could probably be reduced), but it's admittedly a little more now:  Classes for different context types, for storing drawing commands
+and even (gasp!) an abstract class that captures some commonality between contexts.  Still totally worth it, though.
+
+1 additional class (MPWView) is purely optional
+
+In the github project, the code is actually integrated into an adapted version of Matt Gallagher's IconApp, so you have a working example right there.
+
+**But Cocoa has some fine drawing functionality with NSBezierPath, NSAffineTransform and friends**
+
+True, but MPWDrawingContext works identically on both iOS and Mac OS X.  In fact there's also an MPWView class that works on both iOS and OSX, which is used in the sample code mentioned above to create an iOS app using the same drawing code as the OS X app.
+
+I also prefer my graphics context to not be a hidden global parameter that's implicitly used by a bunch of other objects.
+
+**Who cares about OSX^H^H^H iOS?**
+
+Based on my unscientific experiments, MPWDrawingContext reduces the code I have to write for even one of the two platforms by about 20-30%.  Your mileage will almost certainly vary.
+
+**Who cares about less code?**
+
+Well, it\s not just less code, it's more pleasant code as well:
+
+	[[[[[context moveto:0 :0] lineto:100 :0] lineto:50 :50] closepath] stroke];
+
+vs.
+
+	CGContextMoveToPoint( context, 0, 0 );
+	CGContextAddLineToPoint( context, 100, 0);
+	CGContextAddLineToPoint( context, 50, 50 );
+	CGContextClosePath( context );
+	CGContextFillPath( context );
+
+And
+
+	bitmapContext = [MPWCGDrawingContext rgbBitmapContext:NSMakeSize( 595, 842 )];
+or
+	bitmap = [context bitmapWithSize:NSMakeSize( 595, 842 ) commands:^(Drawable){  ... }];
+
+vs.
+	
+	bitmapContext = CGBitmapContextCreate(NULL, size.width, size.height, 8, 0,
+                           CGColorSpaceCreateDeviceRGB(),   
+                           kCGImageAlphaPremultipliedLast)  | kCGBitmapByteOrderDefault );
+
+
+**No it's not!**
+
+OK :-)

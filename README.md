@@ -272,7 +272,8 @@ And
 
 	bitmapContext = [MPWCGDrawingContext rgbBitmapContext:NSMakeSize( 595, 842 )];
 or
-	bitmap = [context bitmapWithSize:NSMakeSize( 595, 842 ) commands:^(Drawable){  ... }];
+
+        bitmap = [context bitmapWithSize:NSMakeSize( 595, 842 ) commands:^(Drawable){  ... }];
 
 vs.
 	

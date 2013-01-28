@@ -243,7 +243,10 @@ and even (gasp!) an abstract class that captures some commonality between contex
 
 1 additional class (MPWView) is purely optional
 
-In the github project, the code is actually integrated into an adapted version of Matt Gallagher's IconApp, so you have a working example right there.
+In the [github project](https://github.com/mpw/MPWDrawingContext), the code
+is actually integrated into an adapted version of Matt Gallagher's
+[IconApp](http://www.cocoawithlove.com/2011/01/advanced-drawing-using-appkit.html) (with some inspiration from Marcus
+Crafter's [iOS port](http://redartisan.com/2011/05/13/porting-iconapp-core-graphics) of same), so you have a working example right there.
 
 **But Cocoa has some fine drawing functionality with NSBezierPath, NSAffineTransform and friends**
 
@@ -271,9 +274,6 @@ vs.
 
 And
 
-	bitmapContext = [MPWCGDrawingContext rgbBitmapContext:NSMakeSize( 595, 842 )];
-or
-
         bitmap = [context bitmapWithSize:NSMakeSize( 595, 842 ) commands:^(Drawable){  ... }];
 
 vs.
@@ -281,8 +281,19 @@ vs.
 	bitmapContext = CGBitmapContextCreate(NULL, size.width, size.height, 8, 0,
                            CGColorSpaceCreateDeviceRGB(),   
                            kCGImageAlphaPremultipliedLast)  | kCGBitmapByteOrderDefault );
+	{ .... } 
+        cgBitmap = CGBitmapContextCreateImage( bitmapContext );
+	bitmap = [UIImage imageWithCGImage:cgBitmap];
+	CGImageRelease(cgBitmap);
+	CGContextRelease(bitmapContext);
 
 
 **No it's not!**
 
 OK :-)
+
+Credits:
+
+<http://cocoawithlove.com/2011/01/advanced-drawing-using-appkit.html>
+<http://redartisan.com/2011/05/13/porting-iconapp-core-graphics>
+

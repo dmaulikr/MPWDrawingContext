@@ -28,7 +28,6 @@
 		1FD8D69C14EE323D00FEABF3 /* iconapp.classdict in Resources */ = {isa = PBXBuildFile; fileRef = 1F201B6F14E7FF5E007BEFDA /* iconapp.classdict */; };
 		1FD8D6AA14EE349100FEABF3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8D6A914EE349100FEABF3 /* CoreText.framework */; };
 		1FD8D6B414EE3CBA00FEABF3 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C81A1912F2AAB600AFE7BF /* IconView.m */; };
-		1FD8D6B914EE44DF00FEABF3 /* IconPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8D6B814EE44DF00FEABF3 /* IconPhoneView.m */; };
 		256AC3DA0F4B6AC300CF3369 /* IconAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -73,8 +72,6 @@
 		1FD8D69414EE31EF00FEABF3 /* MPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPWViewController.h; sourceTree = "<group>"; };
 		1FD8D69514EE31EF00FEABF3 /* MPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPWViewController.m; sourceTree = "<group>"; };
 		1FD8D6A914EE349100FEABF3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		1FD8D6B714EE44DF00FEABF3 /* IconPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconPhoneView.h; sourceTree = "<group>"; };
-		1FD8D6B814EE44DF00FEABF3 /* IconPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconPhoneView.m; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* IconAppAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconAppAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* IconAppAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconAppAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* IconApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconApp_Prefix.pch; sourceTree = "<group>"; };
@@ -198,8 +195,6 @@
 				1FD8D69414EE31EF00FEABF3 /* MPWViewController.h */,
 				1FD8D69514EE31EF00FEABF3 /* MPWViewController.m */,
 				1FD8D68314EE31EF00FEABF3 /* Supporting Files */,
-				1FD8D6B714EE44DF00FEABF3 /* IconPhoneView.h */,
-				1FD8D6B814EE44DF00FEABF3 /* IconPhoneView.m */,
 			);
 			path = IconPhoneApp;
 			sourceTree = "<group>";
@@ -345,7 +340,6 @@
 				1FD8D68D14EE31EF00FEABF3 /* MPWAppDelegate.m in Sources */,
 				1FD8D69614EE31EF00FEABF3 /* MPWViewController.m in Sources */,
 				1FD8D6B414EE3CBA00FEABF3 /* IconView.m in Sources */,
-				1FD8D6B914EE44DF00FEABF3 /* IconPhoneView.m in Sources */,
 				1FD4FF0A15837787000D4753 /* MPWCGDrawingContext.m in Sources */,
 				1FD4FF0F158377D3000D4753 /* MPWView.m in Sources */,
 				1FB7F59B16AC76F3001BF2EB /* MPWAbstractCGContext.m in Sources */,

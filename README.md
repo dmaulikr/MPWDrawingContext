@@ -292,8 +292,3 @@ vs.
 
 OK :-)
 
-Credits:
-
-<http://cocoawithlove.com/2011/01/advanced-drawing-using-appkit.html>
-<http://redartisan.com/2011/05/13/porting-iconapp-core-graphics>
-

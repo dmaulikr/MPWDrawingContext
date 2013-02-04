@@ -7,8 +7,8 @@
 //
 
 #import "MPWAppDelegate.h"
-#import <MPWFoundation/MPWFoundation.h>
 #import <CoreText/CoreText.h>
+#import "AccessorMacros.h"
 
 @implementation MPWAppDelegate
 

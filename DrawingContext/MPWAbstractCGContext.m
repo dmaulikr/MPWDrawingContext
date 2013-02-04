@@ -9,6 +9,7 @@
 #import "MPWAbstractCGContext.h"
 #import "MPWDrawingContext.h"
 #import <CoreText/CoreText.h>
+#include <objc/runtime.h>
 
 
 @protocol DrawingContextRealArray <NSObject>
@@ -21,18 +22,8 @@
 
 #if NS_BLOCKS_AVAILABLE
 
-@interface NSBlock : NSObject
-@end
-@implementation NSBlock(value)
-
--(void)drawOnContext:aContext
-{
-    ((DrawingBlock)self)(aContext);
-}
-
-@end
-
 @implementation MPWDrawingCommands
+
 
 -(id)initWithBlock:(DrawingBlock)aBlock
 {
@@ -63,6 +54,19 @@
 
 
 @implementation MPWAbstractCGContext
+
+#if NS_BLOCKS_AVAILABLE
++(void)initialize
+{
+    static int initialized=NO;
+    if  ( !initialized) {
+        Class blockClass=NSClassFromString(@"NSBlock");
+        IMP theImp=imp_implementationWithBlock( ^(id blockSelf, id aContext){ ((DrawingBlock)blockSelf)(aContext); } );
+        class_addMethod(blockClass, @selector(drawOnContext:), theImp, "v@:@");
+        initialized=YES;
+    }
+}
+#endif
 
 -(int)object:inArray toFloats:(float *)floatArray maxCount:(int)maxCount
 {
@@ -348,8 +352,8 @@ POINTARGMETHOD(lineto)
 #endif
 
 @end
-#if 0
 
+#if 0
 #import <MPWFoundation/MPWFoundation.h>
 
 @implementation MPWAbstractCGContext(testing)
@@ -382,4 +386,3 @@ POINTARGMETHOD(lineto)
 
 @end
 #endif
-

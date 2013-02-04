@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-#import <EGOS/MPWDrawingContext.h>
+#import "MPWDrawingContext.h"
 
 
 @interface MPWView : NSView {

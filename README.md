@@ -148,7 +148,7 @@ by -fontWithName:size:.   We purposely don't specify what
 exact class the font will be.
 
 
-Graphcis State
+Graphics State
 --------------
 
 Setting colors uses the same pattern as setting fonts: there are

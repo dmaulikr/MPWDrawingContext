@@ -10,11 +10,18 @@
 			<dict/>
 			<key>instanceMethods</key>
 			<dict>
-				<key>drawMPWRect:r onContext:aContext</key>
-				<string>nativeSize := self nativeRect size.
+				<key>drawRect:r onContext:aContext</key>
+				<string>
+aContext := MPWCGDrawingContext currentContext.
+
+stdout println:aContext.
+
+nativeSize := self nativeRect size.
 boundsSize := self bounds size.
 nativeAspect := nativeSize x / nativeSize x.
 boundsAspect := boundsSize x / boundsSize y.
+scale := 1.0.
+
 nativeAspect &gt; boundsAspect ifTrue: [  scale := boundsSize x / nativeSize x. ] 
                                                      ifFalse: [  scale := boundsSize y / nativeSize y. ]. 
 
@@ -23,7 +30,7 @@ trans := (boundsSize - ( nativeSize * scale )) / 2.
 (aContext translate: trans x :trans y )  scale: scale : scale .
 ellipseRect := 32 @ 38 extent: 448 @ 448 .
 aContext  setShadowOffset: (0 @ (-8 * scale)) blur: (scale*12) color:(aContext colorGray:0 alpha: 0.75).
-aContext setFillColorGray: 0.6 alpha: 1.0 .
+aContext setFillColorGray: 0.2 alpha: 1.0 .
 (aContext ellipseInRect: ellipseRect) fill .
 aContext clearShadow.
 (aContext ellipseInRect: ellipseRect) clip .
@@ -89,7 +96,6 @@ endPoint := center x @ (center y + glossRadius).
 aContext drawLinearGradientFrom: gradientStart  to: endPoint colors: colors offsets: #( 0 0.5 1.0 ).
 aContext grestore.
 
-1 ifTrue: [ self drawRectObjc: r onContext: aContext ].
 </string>
 			</dict>
 		</dict>

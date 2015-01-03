@@ -75,11 +75,11 @@
 	return NSMakeRect(0, 0, 512, 512);
 }
 
-#if 0
+#if 1
 -(void)drawRect:(NSRect)rect onContext:(Drawable)context
 {
     NSLog(@"drawRect:onContext:");
-    [self drawMPWRect:[MPWRect rectWithNSRect:rect] onContext:context];
+    [self drawMPWRect:rect onContext:context];
 }
 #endif
 
@@ -235,7 +235,7 @@
 
 #endif
 
--(void)drawRect:(NSRect)rect onContext:(Drawable)context
+-(void)drawRect_objc:(NSRect)rect onContext:(Drawable)context
 {
 	NSSize nativeSize = [self nativeRect].size;
 	NSSize boundsSize = /* [context isDrawingToScreen] */ YES ? self.bounds.size : [self nativeRect].size;

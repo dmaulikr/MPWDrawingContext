@@ -75,8 +75,13 @@
 	[context translate:0  :[self bounds].size.height];
 	[[context scale:1  :-1] setlinewidth:1];
 #endif
-//    NSLog(@"context: %@",context);
+    NSLog(@"context: %@",context);
 	[self drawRect:rect onContext:context];
+}
+
+-(void)setNeedsDisplay
+{
+    [self setNeedsDisplay:YES];
 }
 
 -(void)methodsDefined
@@ -87,7 +92,7 @@
 
 
 
--(void)drawLayer1:(CALayer*)layer inContext:(CGContextRef)cgContext
+-(void)drawLayer:(CALayer*)layer inContext:(CGContextRef)cgContext
 {
 	MPWCGDrawingContext *context = [MPWCGDrawingContext contextWithCGContext:cgContext];
 #if TARGET_OS_IPHONE

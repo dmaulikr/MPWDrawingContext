@@ -6,8 +6,12 @@
 	<dict>
 		<key>IconView</key>
 		<dict>
-			<key>drawMPWRect:r onContext:aContext</key>
-			<string>nativeSize := self nativeRect size.
+			<key>classMethods</key>
+			<dict/>
+			<key>instanceMethods</key>
+			<dict>
+				<key>drawMPWRect:r onContext:aContext</key>
+				<string>nativeSize := self nativeRect size.
 boundsSize := self bounds size.
 nativeAspect := nativeSize x / nativeSize x.
 boundsAspect := boundsSize x / boundsSize y.
@@ -87,9 +91,12 @@ aContext grestore.
 
 1 ifTrue: [ self drawRectObjc: r onContext: aContext ].
 </string>
+			</dict>
 		</dict>
 	</dict>
 	<key>uniqueID</key>
 	<string>EE5FF463-CAE0-43FF-A139-1CD2C72B7F53-29543-0000A259E57C070E</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
